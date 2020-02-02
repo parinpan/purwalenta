@@ -26,6 +26,12 @@
   version = "v0.0.12"
 
 [[projects]]
+  name = "github.com/tylerb/graceful"
+  packages = ["."]
+  revision = "4654dfbb6ad53cb5e27f37d99b02e16c1872fbbb"
+  version = "v1.2.15"
+
+[[projects]]
   name = "github.com/valyala/bytebufferpool"
   packages = ["."]
   revision = "e746df99fe4a3986f4d4f79e13c1e0117ce9c2f7"
@@ -64,6 +70,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "0829fef4b98224fdbbb768d25db3392f5e5cce5dbfdc77c294e33dc8d9de7694"
+  inputs-digest = "441a484363a80365d9d22a251052388387b14a6ec05631435d6e756359648085"
   solver-name = "gps-cdcl"
   solver-version = 1

@@ -1,0 +1,51 @@
+version: '3'
+services:
+  purwalenta:
+      container_name: "purwalenta_binary"
+      build:
+        context: ../../.
+        dockerfile: ./build/docker/purwalenta/Dockerfile
+      volumes:
+          - purwalenta_binary:/purwalenta
+      ports:
+        - 8080:9099
+      networks:
+        - purwalenta_network
+      expose:
+        - 9099
+      entrypoint: purwalenta-app
+
+  postgres:
+      container_name: "purwalenta_postgre"
+      image: postgres:alpine
+      ports:
+        - 5432:5432
+      volumes:
+        - purwalenta_postgre:/purwalenta_postgre
+      environment:
+        - PGDATA=/purwalenta_postgre
+      networks:
+          - purwalenta_network
+
+  consul_server:
+      container_name: "purwalenta_consul_server"
+      image: consul
+      volumes:
+         - purwalenta_consul_server:/consul/data
+      ports:
+        - 8300:8300
+        - 8301:8301
+        - 8302:8302
+        - 8500:8500
+        - 8600:8600
+      command: agent -server -bootstrap-expect 1 -ui -client 0.0.0.0 -data-dir /consul/data
+      networks:
+        - purwalenta_network
+
+networks:
+  purwalenta_network:
+
+volumes:
+  purwalenta_binary:
+  purwalenta_postgre:
+  purwalenta_consul_server:

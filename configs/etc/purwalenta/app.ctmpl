@@ -1,0 +1,3 @@
+app:
+    name: {{ key "service/purwalenta/app/name" }}
+    version: {{ key "service/purwalenta/app/name" }}
