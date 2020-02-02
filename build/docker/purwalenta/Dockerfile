@@ -9,11 +9,10 @@ RUN unzip consul-template_0.24.1_linux_amd64.zip; rm consul-template_0.24.1_linu
 RUN mv consul-template /usr/bin/consul-template
 
 COPY ./configs/etc/purwalenta/app.ctmpl /etc/purwalenta/app.ctmpl
-COPY ./configs/etc/purwalenta/app.staging.yaml /etc/purwalenta/app.staging.yaml
-COPY ./configs/etc/purwalenta/app.production.yaml /etc/purwalenta/app.production.yaml
+COPY ./configs/etc/purwalenta/app.yaml /etc/purwalenta/app.yaml
 
 COPY ./configs/var/consul/template/consul.template.hcl /var/consul/template/consul.template.hcl
 COPY ./cmd/purwalenta/purwalenta-bin /usr/bin/purwalenta
 COPY ./build/docker/purwalenta/purwalenta-app.sh /usr/bin/purwalenta-app
-ENV PATH="/usr/bin:${PATH}"
 
+ENV PATH="/usr/bin:${PATH}"

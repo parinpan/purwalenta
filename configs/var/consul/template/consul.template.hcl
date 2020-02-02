@@ -9,10 +9,5 @@ consul {
 
 template {
 	source      = "/etc/purwalenta/app.ctmpl"
-	destination = "/etc/purwalenta/app.production.yaml"
-}
-
-template {
-	source      = "/etc/purwalenta/app.ctmpl"
-	destination = "/etc/purwalenta/app.staging.yaml"
+	destination = "/etc/purwalenta/app.yaml"
 }
