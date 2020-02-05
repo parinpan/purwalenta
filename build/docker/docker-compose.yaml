@@ -21,6 +21,7 @@ services:
       ports:
         - 5432:5432
       volumes:
+        - ./build/docker/purwalenta/init.sql:/docker-entrypoint-initdb.d/init.sql
         - purwalenta_postgre:/purwalenta_postgre
       environment:
         - PGDATA=/purwalenta_postgre

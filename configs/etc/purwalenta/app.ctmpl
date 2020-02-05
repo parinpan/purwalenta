@@ -1,3 +1,10 @@
-app:
-    name: {{ key "service/purwalenta/app/name" }}
-    version: {{ key "service/purwalenta/app/version" }}
+App:
+  Name: '{{ key "service/purwalenta/app/name" }}'
+  Version: '{{ key "service/purwalenta/app/version" }}'
+
+Database:
+  Postgre:
+    DSN: '{{ key "service/purwalenta/database/dsn" }}'
+    MaxLifeTime: {{ key "service/purwalenta/database/max_life_time" }}
+    MaxIdle: {{ key "service/purwalenta/database/max_idle" }}
+    MaxOpen: {{ key "service/purwalenta/database/max_open" }}

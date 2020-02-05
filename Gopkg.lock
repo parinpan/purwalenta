@@ -8,10 +8,22 @@
   version = "v1.4.7"
 
 [[projects]]
+  name = "github.com/google/uuid"
+  packages = ["."]
+  revision = "0cd6bf5da1e1c83f8b45653022c74f71af0538a4"
+  version = "v1.1.1"
+
+[[projects]]
   name = "github.com/hashicorp/hcl"
   packages = [".","hcl/ast","hcl/parser","hcl/printer","hcl/scanner","hcl/strconv","hcl/token","json/parser","json/scanner","json/token"]
   revision = "8cb6e5b959231cc1119e43259c4a608f9c51a241"
   version = "v1.0.0"
+
+[[projects]]
+  name = "github.com/jmoiron/sqlx"
+  packages = [".","reflectx"]
+  revision = "d161d7a76b5661016ad0b085869f77fd410f3e6a"
+  version = "v1.2.0"
 
 [[projects]]
   name = "github.com/labstack/echo"
@@ -24,6 +36,12 @@
   packages = ["color","log"]
   revision = "4919956f6fb227b548f004da27c7c6b20fba499f"
   version = "v0.3.0"
+
+[[projects]]
+  name = "github.com/lib/pq"
+  packages = [".","oid","scram"]
+  revision = "99274577be97ac9b1d95a2d61d566dc9b7cc6a54"
+  version = "v1.3.0"
 
 [[projects]]
   name = "github.com/magiconair/properties"
@@ -148,6 +166,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "f0c2ded837e622ec54237dd416463d0faeac0832bc2cdc5b413c67fb1b433939"
+  inputs-digest = "af1befa903fabd7bba80bfeac7e10764bea45d7baf5fbe9327404210f3795dcb"
   solver-name = "gps-cdcl"
   solver-version = 1

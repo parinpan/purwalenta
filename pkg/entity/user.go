@@ -6,11 +6,13 @@ import (
 
 type User struct {
 	ID          string
+	FullName    string
 	Username    string
 	Email       string
 	Password    string
 	PhoneNumber string
 	LoginInfo   UserLoginInfo
+	Type        int
 }
 
 type UserLoginInfo struct {

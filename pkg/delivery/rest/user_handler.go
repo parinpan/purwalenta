@@ -19,7 +19,23 @@ func newUserHandler() *userHandler {
 }
 
 func (handler *userHandler) Login(ctx echo.Context) error {
-	var req = request.UserLogin{}
+	var req = new(request.UserLogin)
+	var resp = NewResponse(ctx)
+	var err error
+
+	if err = ctx.Bind(&req); nil != err {
+		return ctx.JSON(http.StatusInternalServerError, resp)
+	}
+
+	if resp.Data, err = handler.api.Service.Login(ctx, *req); nil != err {
+		return ctx.JSON(http.StatusBadRequest, resp)
+	}
+
+	return ctx.JSON(http.StatusOK, resp)
+}
+
+func (handler *userHandler) SignUp(ctx echo.Context) error {
+	var req = new(request.UserSignUp)
 	var resp = NewResponse(ctx)
 	var err error
 
@@ -27,7 +43,7 @@ func (handler *userHandler) Login(ctx echo.Context) error {
 		return ctx.JSON(http.StatusInternalServerError, resp)
 	}
 
-	if resp.Data, err = handler.api.Service.Login(ctx, req); nil != err {
+	if resp.Data, err = handler.api.Service.SignUp(ctx, *req); nil != err {
 		return ctx.JSON(http.StatusBadRequest, resp)
 	}
 

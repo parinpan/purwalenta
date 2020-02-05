@@ -1,3 +1,10 @@
-app:
-    name: "Purwalenta - Production"
-    version: "1.0"
+App:
+  Name: 'Purwalenta - Production'
+  Version: '1.0'
+
+Database:
+  Postgre:
+    DSN: 'postgresql://purwalenta_postgre:5432/purwalenta'
+    MaxLifeTime: 10
+    MaxIdle: 50
+    MaxOpen: 100

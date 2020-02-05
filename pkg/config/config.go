@@ -4,7 +4,6 @@ import (
 	"sync"
 
 	"github.com/fsnotify/fsnotify"
-	"github.com/labstack/echo"
 	"github.com/spf13/viper"
 )
 
@@ -19,30 +18,28 @@ var (
 	configInstance = new(Config)
 )
 
-func GetConfig(ctx echo.Context) *Config {
+func GetConfig() *Config {
 	once.Do(func() {
 		viper.SetConfigName(configName)
 		viper.SetConfigType(configType)
 		viper.AddConfigPath(configPath)
 
-		var unpackToStruct = func(ctx echo.Context, cfgStruct *Config) {
+		var unpackToStruct = func(cfgStruct *Config) {
 			if err := viper.Unmarshal(&cfgStruct); nil != err {
-				ctx.Logger().Error(err)
 			}
 		}
 
 		if err := viper.ReadInConfig(); nil != err {
-			ctx.Logger().Error(err)
 			return
 		}
 
 		// if config is successfully read; then unpack it to struct
-		unpackToStruct(ctx, configInstance)
+		unpackToStruct(configInstance)
 
 		go func() {
 			viper.WatchConfig()
 			viper.OnConfigChange(func(e fsnotify.Event) {
-				unpackToStruct(ctx, configInstance)
+				unpackToStruct(configInstance)
 			})
 		}()
 	})
