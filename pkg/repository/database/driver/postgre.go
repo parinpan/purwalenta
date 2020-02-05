@@ -26,7 +26,7 @@ func GetPostgreDriver() (*sqlx.DB, error) {
 	once.Do(func() {
 		cfg := config.GetConfig().Database.Postgre
 
-		if config.GetConfig().Database.Postgre.DSN == "" {
+		if cfg.DSN == "" {
 			postgreDBInstance, postgreDBError = nil, ErrEmptyDSNString
 			return
 		}
