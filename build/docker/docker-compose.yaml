@@ -14,6 +14,9 @@ services:
       expose:
         - 9099
       entrypoint: purwalenta-app
+      depends_on:
+        - postgres
+        - consul_server
 
   postgres:
       container_name: "purwalenta_postgre"

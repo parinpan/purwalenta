@@ -8,3 +8,7 @@ Database:
     MaxLifeTime: 10
     MaxIdle: 50
     MaxOpen: 100
+
+UserAuthentication:
+  SecretToken: ''
+  MaxLifeTime: 0

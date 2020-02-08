@@ -15,10 +15,10 @@ const (
 
 var (
 	once           sync.Once
-	configInstance = new(Config)
+	configInstance Config
 )
 
-func GetConfig() *Config {
+func GetConfig() Config {
 	once.Do(func() {
 		viper.SetConfigName(configName)
 		viper.SetConfigType(configType)
@@ -30,16 +30,15 @@ func GetConfig() *Config {
 		}
 
 		if err := viper.ReadInConfig(); nil != err {
-			return
 		}
 
 		// if config is successfully read; then unpack it to struct
-		unpackToStruct(configInstance)
+		unpackToStruct(&configInstance)
 
 		go func() {
 			viper.WatchConfig()
 			viper.OnConfigChange(func(e fsnotify.Event) {
-				unpackToStruct(configInstance)
+				unpackToStruct(&configInstance)
 			})
 		}()
 	})

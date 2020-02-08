@@ -4,11 +4,7 @@ import (
 	"github.com/purwalenta/purwalenta/pkg/entity"
 )
 
-func ValidateUserSignUpTakenFields(user *entity.User) (takenFields []string, isTaken bool) {
-	if nil == user {
-		return takenFields, isTaken
-	}
-
+func ValidateUserSignUpTakenFields(user entity.User) (takenFields []string, isTaken bool) {
 	var fieldsToValidate = map[string]string{
 		"username":     user.Username,
 		"email":        user.Email,

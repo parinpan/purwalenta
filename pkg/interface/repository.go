@@ -6,7 +6,7 @@ import (
 )
 
 type UserRepository interface {
-	FindUserForSignUp(ctx echo.Context, user entity.User) (*entity.User, error)
+	FindExistingUser(ctx echo.Context, user entity.User) (*entity.User, error)
 	Login(ctx echo.Context, user entity.User) (*entity.User, error)
 	SignUp(ctx echo.Context, user entity.User) (bool, error)
 }

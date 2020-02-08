@@ -8,3 +8,7 @@ Database:
     MaxLifeTime: {{ key "service/purwalenta/database/max_life_time" }}
     MaxIdle: {{ key "service/purwalenta/database/max_idle" }}
     MaxOpen: {{ key "service/purwalenta/database/max_open" }}
+
+UserAuthentication:
+  SecretToken: '{{ key "service/purwalenta/user_authentication/secret_token" }}'
+  MaxLifeTime: {{ key "service/purwalenta/user_authentication/max_life_time" }}

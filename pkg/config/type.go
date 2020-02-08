@@ -1,8 +1,9 @@
 package config
 
 type Config struct {
-	App      AppConfig
-	Database DatabaseConfig
+	App                AppConfig
+	Database           DatabaseConfig
+	UserAuthentication UserAuthenticationConfig
 }
 
 type AppConfig struct {
@@ -19,4 +20,9 @@ type PostgreConfig struct {
 	MaxLifeTime int
 	MaxIdle     int
 	MaxOpen     int
+}
+
+type UserAuthenticationConfig struct {
+	SecretToken string
+	MaxLifeTime int
 }

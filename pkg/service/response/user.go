@@ -1,17 +1,23 @@
 package response
 
 type User struct {
-	ID          string `json:"id"`
-	FullName    string `json:"full_name"`
-	Username    string `json:"username"`
-	Email       string `json:"email"`
-	PhoneNumber string `json:"phone_number"`
-	Token       string `json:"token"`
-	Type        int    `json:"type"`
+	ID          string  `json:"id"`
+	FullName    string  `json:"full_name"`
+	Username    string  `json:"username"`
+	Email       string  `json:"email"`
+	PhoneNumber string  `json:"phone_number"`
+	Balance     float64 `json:"balance"`
+	Token       string  `json:"token"`
+	Type        int     `json:"type"`
 }
 
 type UserLogin struct {
 	User
+	LoginInfo UserLoginInfo `json:"login_info"`
+}
+
+type UserLoginInfo struct {
+	Success bool `json:"success"`
 }
 
 type UserSignUp struct {

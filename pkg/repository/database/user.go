@@ -14,7 +14,21 @@ type UserRepository struct {
 }
 
 func (o *UserRepository) Login(ctx echo.Context, user entity.User) (*entity.User, error) {
-	return nil, nil
+	var result = new(entity.User)
+	var row = o.DB.QueryRow(o.DB.Rebind(query.UserLoginQuery), user.Username, user.Email, user.PhoneNumber)
+
+	var resultVars = []interface{}{
+		&result.ID, &result.FullName, &result.Username, &result.Email, &result.Password, &result.PhoneNumber,
+		&result.DateOfBirth, &result.Balance, &result.ProfilePicture, &result.ProfileDescription,
+		&result.RefreshToken, &result.Type,
+	}
+
+	if err := row.Scan(resultVars...); nil != err && err != sql.ErrNoRows {
+		ctx.Logger().Error(err)
+		return nil, err
+	}
+
+	return result, nil
 }
 
 func (o *UserRepository) SignUp(ctx echo.Context, user entity.User) (bool, error) {
@@ -24,15 +38,21 @@ func (o *UserRepository) SignUp(ctx echo.Context, user entity.User) (bool, error
 	)
 
 	numRowsAffected, err := result.RowsAffected()
-	return numRowsAffected > 0, err
+	if nil != err {
+		ctx.Logger().Error(err)
+		return false, err
+	}
+
+	return numRowsAffected > 0, nil
 }
 
-func (o *UserRepository) FindUserForSignUp(ctx echo.Context, user entity.User) (*entity.User, error) {
+func (o *UserRepository) FindExistingUser(ctx echo.Context, user entity.User) (*entity.User, error) {
 	var result = new(entity.User)
-	var row = o.DB.QueryRow(o.DB.Rebind(query.FindUserForSignUpQuery), user.Username, user.Email, user.PhoneNumber)
+	var row = o.DB.QueryRow(o.DB.Rebind(query.FindExistingUserQuery), user.Username, user.Email, user.PhoneNumber)
 
 	if err := row.Scan(&result.Username, &result.Email, &result.PhoneNumber); nil != err && err != sql.ErrNoRows {
-		return nil, err
+		ctx.Logger().Error(err)
+		return result, err
 	}
 
 	return result, nil

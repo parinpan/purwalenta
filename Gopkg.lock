@@ -2,10 +2,34 @@
 
 
 [[projects]]
+  name = "github.com/dgrijalva/jwt-go"
+  packages = ["."]
+  revision = "06ea1031745cb8b3dab3f6a236daf2b0aa468b7e"
+  version = "v3.2.0"
+
+[[projects]]
   name = "github.com/fsnotify/fsnotify"
   packages = ["."]
   revision = "c2828203cd70a50dcccfb2761f8b1f8ceef9a8e9"
   version = "v1.4.7"
+
+[[projects]]
+  name = "github.com/go-playground/locales"
+  packages = [".","currency"]
+  revision = "9f105231d3a5f6877a2bf8321dfa15ea6f844b1b"
+  version = "v0.13.0"
+
+[[projects]]
+  name = "github.com/go-playground/universal-translator"
+  packages = ["."]
+  revision = "f87b1403479a348651dbf5f07f5cc6e5fcf07008"
+  version = "v0.17.0"
+
+[[projects]]
+  name = "github.com/go-playground/validator"
+  packages = ["."]
+  revision = "fb6c45823ad5db49e788621271c6f86fa3a0f149"
+  version = "v10.1.0"
 
 [[projects]]
   name = "github.com/google/uuid"
@@ -27,15 +51,21 @@
 
 [[projects]]
   name = "github.com/labstack/echo"
-  packages = ["."]
-  revision = "8d7f05e5336fa9a05c6ca5a610a0c5140c01bfc3"
-  version = "v4.1.14"
+  packages = [".","middleware"]
+  revision = "38772c686c76b501f94bd6cd5b77f5842e93b559"
+  version = "v3.3.10"
 
 [[projects]]
   name = "github.com/labstack/gommon"
-  packages = ["color","log"]
+  packages = ["bytes","color","log","random"]
   revision = "4919956f6fb227b548f004da27c7c6b20fba499f"
   version = "v0.3.0"
+
+[[projects]]
+  name = "github.com/leodido/go-urn"
+  packages = ["."]
+  revision = "a0f5013415294bb94553821ace21a1a74c0298cc"
+  version = "v1.2.0"
 
 [[projects]]
   name = "github.com/lib/pq"
@@ -130,20 +160,20 @@
 [[projects]]
   branch = "master"
   name = "golang.org/x/crypto"
-  packages = ["acme","acme/autocert"]
-  revision = "69ecbb4d6d5dab05e49161c6e77ea40a030884e1"
+  packages = ["acme","acme/autocert","bcrypt","blowfish"]
+  revision = "c9f3fb736b729628ec1e9c1a6b4313e883f452f9"
 
 [[projects]]
   branch = "master"
   name = "golang.org/x/net"
   packages = ["idna"]
-  revision = "6afb5195e5aab057fda82e27171243402346b0ad"
+  revision = "16171245cfb220d5317888b716d69c1fb4e7992b"
 
 [[projects]]
   branch = "master"
   name = "golang.org/x/sys"
   packages = ["unix"]
-  revision = "9fbb57f87de9ccfe3a99d4e3270ce8a926ebba4f"
+  revision = "d101bd2416d505c0448a6ce8a282482678040a89"
 
 [[projects]]
   name = "golang.org/x/text"
@@ -166,6 +196,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "af1befa903fabd7bba80bfeac7e10764bea45d7baf5fbe9327404210f3795dcb"
+  inputs-digest = "a1109cbd15e75f91d37c6f7c7b7ed1757076cd2f9e52c89c801213309e33db15"
   solver-name = "gps-cdcl"
   solver-version = 1

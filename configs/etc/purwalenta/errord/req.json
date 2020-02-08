@@ -1,0 +1,14 @@
+[
+	{
+		"code": "001x001",
+		"header_status": 400,
+		"type": "RequestBindingError",
+		"lang_id": "Duh... permintaan kamu tidak dapat dipenuhi."
+	},
+	{
+		"code": "001x002",
+		"header_status": 400,
+		"type": "RequestValidationError",
+		"lang_id": "Duh... permintaan kamu tidak dapat dipenuhi."
+	}
+]

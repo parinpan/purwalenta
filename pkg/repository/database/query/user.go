@@ -1,11 +1,20 @@
 package query
 
 const (
-	FindUserForSignUpQuery = `
+	FindExistingUserQuery = `
 		SELECT
 			username, email, phone_number
 		FROM
 			public.user
+		WHERE
+			username = ? OR email = ? OR phone_number = ?
+	`
+
+	UserLoginQuery = `
+		SELECT
+			*
+		FROM
+			public.USER
 		WHERE
 			username = ? OR email = ? OR phone_number = ?
 	`
