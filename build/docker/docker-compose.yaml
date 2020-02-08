@@ -8,15 +8,12 @@ services:
       volumes:
           - purwalenta_binary:/purwalenta
       ports:
-        - 8080:9099
+        - 8085:9099
       networks:
         - purwalenta_network
       expose:
         - 9099
       entrypoint: purwalenta-app
-      depends_on:
-        - postgres
-        - consul_server
 
   postgres:
       container_name: "purwalenta_postgre"
@@ -24,27 +21,26 @@ services:
       ports:
         - 5432:5432
       volumes:
-        - ./build/docker/purwalenta/init.sql:/docker-entrypoint-initdb.d/init.sql
         - purwalenta_postgre:/purwalenta_postgre
       environment:
         - PGDATA=/purwalenta_postgre
       networks:
           - purwalenta_network
 
-  consul_server:
-      container_name: "purwalenta_consul_server"
-      image: consul
-      volumes:
-         - purwalenta_consul_server:/consul/data
-      ports:
-        - 8300:8300
-        - 8301:8301
-        - 8302:8302
-        - 8500:8500
-        - 8600:8600
-      command: agent -server -bootstrap-expect 1 -ui -client 0.0.0.0 -data-dir /consul/data
-      networks:
-        - purwalenta_network
+#  consul_server:
+#      container_name: "purwalenta_consul_server"
+#      image: consul
+#      volumes:
+#         - purwalenta_consul_server:/consul/data
+#      ports:
+#        - 8300:8300
+#        - 8301:8301
+#        - 8302:8302
+#        - 8500:8500
+#        - 8600:8600
+#      command: agent -server -bootstrap-expect 1 -ui -client 0.0.0.0 -data-dir /consul/data
+#      networks:
+#        - purwalenta_network
 
 networks:
   purwalenta_network:

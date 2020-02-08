@@ -4,11 +4,11 @@ App:
 
 Database:
   Postgre:
-    DSN: 'postgresql://purwalenta_postgre:5432/purwalenta'
+    DSN: 'host=purwalenta_postgre port=5432 user=postgres dbname=purwalenta password=rahas1a sslmode=disable'
     MaxLifeTime: 10
     MaxIdle: 50
     MaxOpen: 100
 
 UserAuthentication:
-  SecretToken: ''
-  MaxLifeTime: 0
+  SecretToken: 'cBBqT%,$WEF:f9mBW7qSvkuSnSO{7mLh*xuhofUm"E=#KdloyPlbWyj>^#551}A'
+  MaxLifeTime: 86400000000
