@@ -6,6 +6,7 @@ import (
 	"github.com/purwalenta/purwalenta/pkg/config"
 	"github.com/purwalenta/purwalenta/pkg/entity"
 	_interface "github.com/purwalenta/purwalenta/pkg/interface"
+	"github.com/purwalenta/purwalenta/pkg/service/builder"
 	"github.com/purwalenta/purwalenta/pkg/service/request"
 	"github.com/purwalenta/purwalenta/pkg/service/response"
 	"github.com/purwalenta/purwalenta/pkg/service/validation"
@@ -13,7 +14,8 @@ import (
 )
 
 type UserService struct {
-	Repo _interface.UserRepository
+	Repo        _interface.UserRepository
+	MailingRepo _interface.UserMailingRepository
 }
 
 func (service *UserService) Login(ctx echo.Context, req request.UserLogin) (response.UserLogin, error) {
@@ -77,6 +79,7 @@ func (service *UserService) SignUp(ctx echo.Context, req request.UserSignUp) (re
 		Email:       req.Email,
 		Password:    hashedPassword,
 		PhoneNumber: req.PhoneNumber,
+		Status:      entity.InactiveUser,
 		Type:        req.Type,
 	})
 
@@ -89,7 +92,14 @@ func (service *UserService) SignUp(ctx echo.Context, req request.UserSignUp) (re
 	resp.Username = req.Username
 	resp.Email = req.Email
 	resp.PhoneNumber = req.PhoneNumber
+	resp.Status = entity.InactiveUser
 	resp.Type = req.Type
+
+	// send user sign up email verification
+	go func() {
+		template := builder.UserSignUpVerificationEmailTemplate(uuid, req)
+		service.MailingRepo.SendSignUpVerification(ctx, template)
+	}()
 
 	return resp, nil
 }

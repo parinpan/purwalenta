@@ -14,16 +14,16 @@ const (
 		SELECT
 			*
 		FROM
-			public.USER
+			public.user
 		WHERE
 			username = ? OR email = ? OR phone_number = ?
 	`
 
 	UserSignUpQuery = `
 		INSERT INTO
-			public.user(id, full_name, username, email, password, phone_number, type)
+			public.user(id, full_name, username, email, password, phone_number, status, type)
 		VALUES (
-			?, ?, ?, ?, ?, ?, ?
+			?, ?, ?, ?, ?, ?, ?, ?
 		)
 	`
 )

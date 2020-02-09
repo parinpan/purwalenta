@@ -11,6 +11,10 @@ type UserRepository interface {
 	SignUp(ctx echo.Context, user entity.User) (bool, error)
 }
 
+type UserMailingRepository interface {
+	SendSignUpVerification(ctx echo.Context, email entity.TemplateEmail) (bool, error)
+}
+
 type StudentRepository interface {
 }
 

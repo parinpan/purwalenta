@@ -1,10 +1,11 @@
 App:
   Name: 'Purwalenta - Production'
   Version: '1.0'
+  SignUpEmailAgent: 'user@purwalenta.com'
 
 Database:
   Postgre:
-    DSN: 'host=purwalenta_postgre port=5432 user=postgres dbname=purwalenta password=rahas1a sslmode=disable'
+    DSN: 'host=purwalenta_postgre port=5432 user=purwalenta dbname=purwalenta password=purwalenta sslmode=disable'
     MaxLifeTime: 10
     MaxIdle: 50
     MaxOpen: 100
@@ -12,3 +13,14 @@ Database:
 UserAuthentication:
   SecretToken: 'cBBqT%,$WEF:f9mBW7qSvkuSnSO{7mLh*xuhofUm"E=#KdloyPlbWyj>^#551}A'
   MaxLifeTime: 86400000000
+
+SMTP:
+  Identity: 'Purwalenta User Management'
+  Username: 'user@purwalenta.com'
+  Password: 'fjU1i[i6,vI5'
+  Outgoing:
+    Server: 'srv75.niagahoster.com'
+    Port: 587
+  Incoming:
+    Server: 'srv75.niagahoster.com'
+    Port: 143

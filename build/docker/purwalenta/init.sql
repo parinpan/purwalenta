@@ -1,4 +1,4 @@
-create table "user"
+create table public.user
 (
     id uuid not null
         constraint user_pk
@@ -13,22 +13,24 @@ create table "user"
     profile_picture text default ''::text,
     profile_desc varchar(140) default ''::character varying,
     refresh_token text default ''::text,
+    status smallint default 2 not null,
     type smallint default 3 not null
 );
 
-alter table "user" owner to postgres;
+alter table public.user owner to purwalenta;
 
 create unique index user_email_uindex
-    on "user" (email);
+    on public.user (email);
 
 create unique index user_id_uindex
-    on "user" (id);
+    on public.user (id);
 
 create unique index user_username_uindex
-    on "user" (username);
+    on public.user (username);
 
 create unique index user_refresh_token_uindex
-    on "user" (refresh_token);
+    on public.user (refresh_token);
 
 create unique index user_phone_number_uindex
-    on "user" (phone_number);
+    on public.user (phone_number);
+

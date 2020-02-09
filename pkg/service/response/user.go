@@ -8,6 +8,7 @@ type User struct {
 	PhoneNumber string  `json:"phone_number"`
 	Balance     float64 `json:"balance"`
 	Token       string  `json:"token"`
+	Status      int     `json:"status"`
 	Type        int     `json:"type"`
 }
 

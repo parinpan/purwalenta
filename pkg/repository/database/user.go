@@ -20,7 +20,7 @@ func (o *UserRepository) Login(ctx echo.Context, user entity.User) (*entity.User
 	var resultVars = []interface{}{
 		&result.ID, &result.FullName, &result.Username, &result.Email, &result.Password, &result.PhoneNumber,
 		&result.DateOfBirth, &result.Balance, &result.ProfilePicture, &result.ProfileDescription,
-		&result.RefreshToken, &result.Type,
+		&result.RefreshToken, &result.Status, &result.Type,
 	}
 
 	if err := row.Scan(resultVars...); nil != err && err != sql.ErrNoRows {
@@ -34,7 +34,7 @@ func (o *UserRepository) Login(ctx echo.Context, user entity.User) (*entity.User
 func (o *UserRepository) SignUp(ctx echo.Context, user entity.User) (bool, error) {
 	result := o.DB.MustExec(
 		o.DB.Rebind(query.UserSignUpQuery),
-		user.ID, user.FullName, user.Username, user.Email, user.Password, user.PhoneNumber, user.Type,
+		user.ID, user.FullName, user.Username, user.Email, user.Password, user.PhoneNumber, user.Status, user.Type,
 	)
 
 	numRowsAffected, err := result.RowsAffected()

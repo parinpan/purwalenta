@@ -1,4 +1,4 @@
 #!/bin/sh
 
-#consul-template -config /var/consul/template/consul.template.hcl -once &&
+consul-template -config /var/consul/template/consul.template.hcl -once &
 purwalenta

@@ -32,6 +32,12 @@
   version = "v10.1.0"
 
 [[projects]]
+  name = "github.com/go-redis/redis"
+  packages = [".","internal","internal/consistenthash","internal/hashtag","internal/pool","internal/proto","internal/util"]
+  revision = "99cd690a7019656b0b67c6664453f27a6d8a658e"
+  version = "v6.15.7"
+
+[[projects]]
   name = "github.com/google/uuid"
   packages = ["."]
   revision = "0cd6bf5da1e1c83f8b45653022c74f71af0538a4"
@@ -161,7 +167,7 @@
   branch = "master"
   name = "golang.org/x/crypto"
   packages = ["acme","acme/autocert","bcrypt","blowfish"]
-  revision = "c9f3fb736b729628ec1e9c1a6b4313e883f452f9"
+  revision = "ecb85df213405b7d32e4d73cb5bbaace2ec88881"
 
 [[projects]]
   branch = "master"
@@ -182,6 +188,18 @@
   version = "v0.3.2"
 
 [[projects]]
+  branch = "v3"
+  name = "gopkg.in/alexcesaro/quotedprintable.v3"
+  packages = ["."]
+  revision = "2caba252f4dc53eaf6b553000885530023f54623"
+
+[[projects]]
+  name = "gopkg.in/gomail.v2"
+  packages = ["."]
+  revision = "41f3572897373c5538c50a2402db15db079fa4fd"
+  version = "2.0.0"
+
+[[projects]]
   name = "gopkg.in/ini.v1"
   packages = ["."]
   revision = "32cf4f7e9c77f151e18b53067b55549b4d1d411d"
@@ -196,6 +214,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "a1109cbd15e75f91d37c6f7c7b7ed1757076cd2f9e52c89c801213309e33db15"
+  inputs-digest = "c8e1b6e5838a0694f673cd490c9579e8aab53d121816594dbbeed2eb51ff28e2"
   solver-name = "gps-cdcl"
   solver-version = 1

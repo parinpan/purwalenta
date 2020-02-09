@@ -4,6 +4,12 @@ import (
 	"time"
 )
 
+const (
+	DeletedUser  = 0
+	ActiveUser   = 1
+	InactiveUser = 2
+)
+
 type User struct {
 	ID                 string
 	FullName           string
@@ -18,6 +24,7 @@ type User struct {
 	LoginInfo          UserLoginInfo
 	Token              string
 	RefreshToken       string
+	Status             int
 	Type               int
 }
 

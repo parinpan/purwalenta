@@ -4,7 +4,7 @@ import (
 	"net/http"
 )
 
-var lookupMap = []ErrorComponent{
+var lookupTable = []ErrorComponent{
 	{
 		Type:       ErrFindExistingUserOnUserSignUp,
 		HttpStatus: http.StatusInternalServerError,
