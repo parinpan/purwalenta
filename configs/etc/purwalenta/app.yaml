@@ -10,6 +10,10 @@ Database:
     MaxIdle: 50
     MaxOpen: 100
 
+  Redis:
+    Address: 'purwalenta_redis:6379'
+    Password: ''
+
 UserAuthentication:
   SecretToken: 'cBBqT%,$WEF:f9mBW7qSvkuSnSO{7mLh*xuhofUm"E=#KdloyPlbWyj>^#551}A'
   MaxLifeTime: 86400000000

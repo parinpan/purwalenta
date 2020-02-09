@@ -1,5 +1,9 @@
 package response
 
+import (
+	"time"
+)
+
 type User struct {
 	ID          string  `json:"id"`
 	FullName    string  `json:"full_name"`
@@ -30,4 +34,11 @@ type UserSignUpInfo struct {
 	Success          bool     `json:"success"`
 	UserAlreadyExist bool     `json:"user_already_exist"`
 	TakenFields      []string `json:"taken_fields"`
+}
+
+type UserSendVerificationCode struct {
+	Email     string    `json:"email"`
+	Success   bool      `json:"success"`
+	ExpiredAt time.Time `json:"expired_at"`
+	Token     string    `json:"token"`
 }

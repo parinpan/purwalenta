@@ -15,6 +15,7 @@ type AppConfig struct {
 
 type DatabaseConfig struct {
 	Postgre PostgreConfig
+	Redis   RedisConfig
 }
 
 type PostgreConfig struct {
@@ -22,6 +23,11 @@ type PostgreConfig struct {
 	MaxLifeTime int
 	MaxIdle     int
 	MaxOpen     int
+}
+
+type RedisConfig struct {
+	Address  string
+	Password string
 }
 
 type UserAuthenticationConfig struct {

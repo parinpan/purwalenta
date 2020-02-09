@@ -2,6 +2,8 @@ package api
 
 import (
 	_interface "github.com/purwalenta/purwalenta/pkg/interface"
+	"github.com/purwalenta/purwalenta/pkg/repository/cache"
+	cacheDriver "github.com/purwalenta/purwalenta/pkg/repository/cache/driver"
 	"github.com/purwalenta/purwalenta/pkg/repository/database"
 	"github.com/purwalenta/purwalenta/pkg/repository/database/driver"
 	"github.com/purwalenta/purwalenta/pkg/repository/mail"
@@ -35,11 +37,15 @@ func newDefaultUserAPI() *UserAPI {
 		repo := new(database.UserRepository)
 		repo.DB, _ = driver.GetPostgreDriver()
 
+		cacheRepo := new(cache.UserCacheRepository)
+		cacheRepo.DB, _ = cacheDriver.GetRedisDriver()
+
 		mailingRepo := new(mail.UserMailingRepository)
 		mailingRepo.Driver = mailingDriver.GoMailDriver
 
 		service := new(servicePkg.UserService)
 		service.Repo = repo
+		service.CacheRepo = cacheRepo
 		service.MailingRepo = mailingRepo
 
 		userInstances[DefaultUserAPIFlag] = &UserAPI{

@@ -15,3 +15,11 @@ type UserSignUp struct {
 	Password    string `json:"password" form:"password" validate:"required"`
 	Type        int    `json:"user_type" form:"type" validate:"required"`
 }
+
+type UserSendVerificationCode struct {
+	ID          string `json:"id" form:"id"`
+	FullName    string `json:"full_name" form:"full_name"`
+	Username    string `json:"username" form:"username"`
+	Email       string `json:"email" form:"email" validate:"required"`
+	PhoneNumber string `json:"phone_number" form:"phone_number"`
+}

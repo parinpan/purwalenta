@@ -32,7 +32,19 @@ services:
         - POSTGRES_USER=purwalenta
         - POSTGRES_DB=purwalenta
       networks:
-          - purwalenta_network
+        - purwalenta_network
+      restart: always
+
+  redis_server:
+      container_name: "purwalenta_redis"
+      image: redis:5.0.7-alpine
+      ports:
+        - 6379:6379
+      entrypoint: redis-server --appendonly yes
+      networks:
+        - purwalenta_network
+      volumes:
+        - purwalenta_redis:/purwalenta_redis
       restart: always
 
 #  consul_server:
@@ -57,4 +69,5 @@ networks:
 volumes:
   purwalenta_binary:
   purwalenta_postgre:
+  purwalenta_redis:
 #  purwalenta_consul_server:

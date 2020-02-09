@@ -15,6 +15,7 @@ import (
 
 type UserService struct {
 	Repo        _interface.UserRepository
+	CacheRepo   _interface.UserCacheRepository
 	MailingRepo _interface.UserMailingRepository
 }
 
@@ -97,9 +98,53 @@ func (service *UserService) SignUp(ctx echo.Context, req request.UserSignUp) (re
 
 	// send user sign up email verification
 	go func() {
-		template := builder.UserSignUpVerificationEmailTemplate(uuid, req)
-		service.MailingRepo.SendSignUpVerification(ctx, template)
+		service.SendVerificationCode(ctx, request.UserSendVerificationCode{
+			ID:          uuid.String(),
+			FullName:    req.FullName,
+			Username:    req.Username,
+			Email:       req.Email,
+			PhoneNumber: req.PhoneNumber,
+		})
 	}()
+
+	return resp, nil
+}
+
+func (service *UserService) SendVerificationCode(ctx echo.Context, req request.UserSendVerificationCode) (response.UserSendVerificationCode, error) {
+	var resp response.UserSendVerificationCode
+
+	user := entity.User{
+		ID:          req.ID,
+		FullName:    req.FullName,
+		Username:    req.Username,
+		Email:       req.Email,
+		PhoneNumber: req.PhoneNumber,
+	}
+
+	user.Token, _ = util.GenerateUserLoginToken(config.GetConfig(), user)
+	verification := entity.SignUpVerification{
+		User:             user,
+		VerificationCode: util.GenerateNumberByDigitLen(4),
+	}
+
+	verification, err := service.CacheRepo.SetSignUpVerificationCode(ctx, verification)
+	if nil != err {
+		ctx.Logger().Error(err)
+		return resp, err
+	}
+
+	template := builder.UserSignUpVerificationEmailTemplate(verification)
+	_, err = service.MailingRepo.SendSignUpVerification(ctx, template)
+
+	if nil != err {
+		ctx.Logger().Error(err)
+		return resp, err
+	}
+
+	resp.Success = true
+	resp.Email = verification.User.Email
+	resp.ExpiredAt = verification.ExpiredAt
+	resp.Token = verification.Token
 
 	return resp, nil
 }
