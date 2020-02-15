@@ -1,10 +1,13 @@
 package service
 
 import (
+	"strings"
+
 	"github.com/google/uuid"
 	"github.com/labstack/echo"
 	"github.com/purwalenta/purwalenta/pkg/config"
 	"github.com/purwalenta/purwalenta/pkg/entity"
+	"github.com/purwalenta/purwalenta/pkg/errord"
 	_interface "github.com/purwalenta/purwalenta/pkg/interface"
 	"github.com/purwalenta/purwalenta/pkg/service/builder"
 	"github.com/purwalenta/purwalenta/pkg/service/request"
@@ -29,10 +32,12 @@ func (service *UserService) Login(ctx echo.Context, req request.UserLogin) (resp
 	})
 
 	if nil != err {
+		err = errord.New(ctx, err)(errord.ErrNoAccountMatchOnUserLogin, errord.Option{WriteLog: true})
 		return resp, err
 	}
 
 	if !util.MatchPasswordHash(req.Password, userLogin.Password) {
+		err = errord.New(ctx, err)(errord.ErrNoMatchPasswordOnUserLogin, errord.Option{WriteLog: true})
 		return resp, nil
 	}
 
@@ -61,13 +66,24 @@ func (service *UserService) SignUp(ctx echo.Context, req request.UserSignUp) (re
 	})
 
 	if nil != err {
+		err = errord.New(ctx, err)(errord.ErrFindExistingUserOnUserSignUp, errord.Option{WriteLog: true})
 		return resp, err
 	}
 
 	if takenFields, isTaken := validation.ValidateUserSignUpTakenFields(*existingUser); isTaken {
 		resp.SignUpInfo.TakenFields = takenFields
 		resp.SignUpInfo.UserAlreadyExist = true
-		return resp, nil
+		takenFieldsString := strings.Join(takenFields, ", ")
+
+		err = errord.New(ctx, nil)(
+			errord.ErrFieldHasTakenOnUserSignUp,
+			errord.Option{
+				WriteLog:       true,
+				FormatterValue: []interface{}{takenFieldsString},
+			},
+		)
+
+		return resp, err
 	}
 
 	uuid, _ := uuid.NewUUID()
@@ -85,6 +101,7 @@ func (service *UserService) SignUp(ctx echo.Context, req request.UserSignUp) (re
 	})
 
 	if nil != err {
+		err = errord.New(ctx, err)(errord.ErrUserCreationOnUserSignUp, errord.Option{WriteLog: true})
 		return resp, err
 	}
 
@@ -129,7 +146,6 @@ func (service *UserService) SendVerificationCode(ctx echo.Context, req request.U
 
 	verification, err := service.CacheRepo.SetSignUpVerificationCode(ctx, verification)
 	if nil != err {
-		ctx.Logger().Error(err)
 		return resp, err
 	}
 
@@ -137,7 +153,6 @@ func (service *UserService) SendVerificationCode(ctx echo.Context, req request.U
 	_, err = service.MailingRepo.SendSignUpVerification(ctx, template)
 
 	if nil != err {
-		ctx.Logger().Error(err)
 		return resp, err
 	}
 

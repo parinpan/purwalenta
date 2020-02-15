@@ -11,10 +11,10 @@ type User struct {
 	Email          string  `json:"email"`
 	PhoneNumber    string  `json:"phone_number"`
 	Balance        float64 `json:"balance"`
-	Token          string  `json:"token"`
 	OauthToken     string  `json:"oauth_token"`
 	RefreshToken   string  `json:"refresh_token"`
-	ProfilePicture string  `json:"token"`
+	Token          string  `json:"token"`
+	ProfilePicture string  `json:"profile_picture"`
 	Status         int     `json:"status"`
 	Type           int     `json:"type"`
 }

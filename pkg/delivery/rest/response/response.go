@@ -1,7 +1,11 @@
 package response
 
 import (
+	"net/http"
 	"time"
+
+	"github.com/labstack/echo"
+	"github.com/purwalenta/purwalenta/pkg/errord"
 )
 
 type Configuration struct {
@@ -15,12 +19,19 @@ type response struct {
 	Data  interface{} `json:"data"`
 }
 
-type errorResponse struct {
-	Code    string `json:"code"`
-	Type    string `json:"type"`
-	Message string `json:"message"`
-}
-
 func New() *response {
 	return new(response)
+}
+
+func (resp *response) ToJSON(ctx echo.Context) error {
+	errorComponent, _ := ctx.Get("errord_error").(errord.ErrorComponent)
+
+	resp.Error = errorComponent
+	httpStatusCode := http.StatusOK
+
+	if errorComponent.HttpStatus > 0 {
+		httpStatusCode = errorComponent.HttpStatus
+	}
+
+	return ctx.JSON(httpStatusCode, resp)
 }
