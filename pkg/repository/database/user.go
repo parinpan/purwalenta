@@ -34,7 +34,8 @@ func (o *UserRepository) Login(ctx echo.Context, user entity.User) (*entity.User
 func (o *UserRepository) SignUp(ctx echo.Context, user entity.User) (bool, error) {
 	result := o.DB.MustExec(
 		o.DB.Rebind(query.UserSignUpQuery),
-		user.ID, user.FullName, user.Username, user.Email, user.Password, user.PhoneNumber, user.Status, user.Type,
+		user.ID, user.FullName, user.Username, user.Email, user.Password, user.PhoneNumber,
+		user.ProfilePicture, user.RefreshToken, user.Status, user.Type,
 	)
 
 	numRowsAffected, err := result.RowsAffected()

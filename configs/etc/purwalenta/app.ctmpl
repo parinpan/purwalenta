@@ -12,3 +12,28 @@ Database:
 UserAuthentication:
   SecretToken: '{{ key "service/purwalenta/user_authentication/secret_token" }}'
   MaxLifeTime: {{ key "service/purwalenta/user_authentication/max_life_time" }}
+
+SMTP:
+  Identity: '{{ key "service/purwalenta/smtp/identity" }}'
+  Username: '{{ key "service/purwalenta/smtp/username" }}'
+  Password: '{{ key "service/purwalenta/smtp/password" }}'
+  Outgoing:
+    Server: '{{ key "service/purwalenta/smtp/outgoing/server" }}'
+    Port: {{ key "service/purwalenta/smtp/outgoing/port" }}
+  Incoming:
+    Server: '{{ key "service/purwalenta/smtp/incoming/server" }}'
+    Port: {{ key "service/purwalenta/smtp/incoming/port" }}
+
+Oauth2:
+  Google:
+    ClientID: '{{ key "service/purwalenta/oauth/google/client_id" }}'
+    ClientSecret: '{{ key "service/purwalenta/oauth/google/client_secret" }}'
+    CallbackURL: '{{ key "service/purwalenta/oauth/google/callback_url" }}'
+    Scopes:
+      - '{{ key "service/purwalenta/oauth/google/scopes_1" }}'
+  Facebook:
+    ClientID: '{{ key "service/purwalenta/oauth/facebook/client_id" }}'
+    ClientSecret: '{{ key "service/purwalenta/oauth/facebook/client_secret" }}'
+    CallbackURL: '{{ key "service/purwalenta/oauth/facebook/callback_url" }}'
+    Scopes:
+      - '{{ key "service/purwalenta/oauth/facebook/scopes_1" }}'

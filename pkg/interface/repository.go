@@ -19,6 +19,10 @@ type UserCacheRepository interface {
 	SetSignUpVerificationCode(ctx echo.Context, verification entity.SignUpVerification) (entity.SignUpVerification, error)
 }
 
+type OauthRepository interface {
+	GetUserInfo(ctx echo.Context, oauth entity.Oauth) (*entity.User, error)
+}
+
 type StudentRepository interface {
 }
 

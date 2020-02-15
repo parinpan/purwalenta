@@ -17,3 +17,7 @@ type StudentService interface {
 
 type MentorService interface {
 }
+
+type OauthService interface {
+	Exchange(ctx echo.Context, req request.OauthExchange) (response.OauthExchange, error)
+}

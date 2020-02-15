@@ -6,7 +6,7 @@ services:
         context: ../../.
         dockerfile: ./build/docker/purwalenta/Dockerfile
       links:
-#        - consul_server
+        - consul_server
         - postgres_server
       volumes:
           - purwalenta_binary:/purwalenta
@@ -47,21 +47,21 @@ services:
         - purwalenta_redis:/purwalenta_redis
       restart: always
 
-#  consul_server:
-#      container_name: "purwalenta_consul_server"
-#      image: consul
-#      volumes:
-#         - purwalenta_consul_server:/consul/data
-#      ports:
-#        - 8300:8300
-#        - 8301:8301
-#        - 8302:8302
-#        - 8500:8500
-#        - 8600:8600
-#      command: agent -server -bootstrap-expect 1 -ui -client 0.0.0.0 -data-dir /consul/data
-#      networks:
-#        - purwalenta_network
-#      restart: always
+  consul_server:
+      container_name: "purwalenta_consul_server"
+      image: consul
+      volumes:
+         - purwalenta_consul_server:/consul/data
+      ports:
+        - 8300:8300
+        - 8301:8301
+        - 8302:8302
+        - 8500:8500
+        - 8600:8600
+      command: agent -server -bootstrap-expect 1 -ui -client 0.0.0.0 -data-dir /consul/data
+      networks:
+        - purwalenta_network
+      restart: always
 
 networks:
   purwalenta_network:
@@ -70,4 +70,4 @@ volumes:
   purwalenta_binary:
   purwalenta_postgre:
   purwalenta_redis:
-#  purwalenta_consul_server:
+  purwalenta_consul_server:

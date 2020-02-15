@@ -28,3 +28,17 @@ SMTP:
   Incoming:
     Server: 'srv75.niagahoster.com'
     Port: 143
+
+Oauth2:
+  Google:
+    ClientID: '1073365596235-7u9g3f4aruilp6dukj1a8ltv02p0b3pm.apps.googleusercontent.com'
+    ClientSecret: 'PA5lWBZyWM_dI9ok9pvOupS9'
+    CallbackURL: 'https://purwalenta.com'
+    Scopes:
+      - 'https://www.googleapis.com/auth/userinfo.profile'
+  Facebook:
+    ClientID: ''
+    ClientSecret: ''
+    CallbackURL: ''
+    Scopes:
+      - 'https://www.googleapis.com/auth/userinfo.profile'

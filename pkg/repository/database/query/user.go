@@ -21,9 +21,9 @@ const (
 
 	UserSignUpQuery = `
 		INSERT INTO
-			public.user(id, full_name, username, email, password, phone_number, status, type)
+			public.user(id, full_name, username, email, password, phone_number, profile_picture, refresh_token, status, type)
 		VALUES (
-			?, ?, ?, ?, ?, ?, ?, ?
+			?, ?, ?, ?, ?, ?, ?, ?, ?, ?
 		)
 	`
 )

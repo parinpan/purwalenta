@@ -5,6 +5,7 @@ type Config struct {
 	Database           DatabaseConfig
 	UserAuthentication UserAuthenticationConfig
 	SMTP               SMTPConfig
+	Oauth2             Oauth2Config
 }
 
 type AppConfig struct {
@@ -51,4 +52,22 @@ type OutgoingSMTPConfig struct {
 type IncomingSMTPConfig struct {
 	Server string
 	Port   int
+}
+
+type Oauth2Config struct {
+	Google   GoogleOauth2Config
+	Facebook FacebookOauth2Config
+}
+
+type GoogleOauth2Config struct {
+	ClientID     string
+	ClientSecret string
+	CallbackURL  string
+	Scopes       []string
+}
+
+type FacebookOauth2Config struct {
+	ClientID     string
+	ClientSecret string
+	CallbackURL  string
 }

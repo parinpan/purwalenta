@@ -5,15 +5,18 @@ import (
 )
 
 type User struct {
-	ID          string  `json:"id"`
-	FullName    string  `json:"full_name"`
-	Username    string  `json:"username"`
-	Email       string  `json:"email"`
-	PhoneNumber string  `json:"phone_number"`
-	Balance     float64 `json:"balance"`
-	Token       string  `json:"token"`
-	Status      int     `json:"status"`
-	Type        int     `json:"type"`
+	ID             string  `json:"id"`
+	FullName       string  `json:"full_name"`
+	Username       string  `json:"username"`
+	Email          string  `json:"email"`
+	PhoneNumber    string  `json:"phone_number"`
+	Balance        float64 `json:"balance"`
+	Token          string  `json:"token"`
+	OauthToken     string  `json:"oauth_token"`
+	RefreshToken   string  `json:"refresh_token"`
+	ProfilePicture string  `json:"token"`
+	Status         int     `json:"status"`
+	Type           int     `json:"type"`
 }
 
 type UserLogin struct {

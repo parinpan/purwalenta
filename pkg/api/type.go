@@ -10,6 +10,8 @@ var (
 
 const (
 	DefaultUserAPIFlag Type = 1
+
+	DefaultOauthAPIFlag Type = 1
 )
 
 type (
