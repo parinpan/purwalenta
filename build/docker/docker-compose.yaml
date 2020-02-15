@@ -31,6 +31,8 @@ services:
         - PGDATA=/purwalenta_postgre
         - POSTGRES_USER=purwalenta
         - POSTGRES_DB=purwalenta
+        - POSTGRES_HOST_AUTH_METHOD=trust
+        - POSTGRES_PASSWORD=purwalenta
       networks:
         - purwalenta_network
       restart: always
