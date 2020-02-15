@@ -45,3 +45,8 @@ type UserSendVerificationCode struct {
 	ExpiredAt time.Time `json:"expired_at"`
 	Token     string    `json:"token"`
 }
+
+type UserVerification struct {
+	User
+	Success bool `json:"success"`
+}

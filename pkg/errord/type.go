@@ -23,12 +23,22 @@ type (
 		WriteLog       bool
 		FormatterValue []interface{}
 	}
+
+	errorOutput struct {
+		System     string         `json:"system"`
+		Dictionary ErrorComponent `json:"errord"`
+	}
 )
 
 const (
 	ErrFindExistingUserOnUserSignUp = "ErrFindExistingUserOnUserSignUp"
 	ErrUserCreationOnUserSignUp     = "ErrUserCreationOnUserSignUp"
 	ErrFieldHasTakenOnUserSignUp    = "ErrFieldHasTakenOnUserSignUp"
+
+	ErrGeneralOnUserVerify     = "ErrInvalidCodeOnUserVerify"
+	ErrInvalidCodeOnUserVerify = "ErrInvalidCodeOnUserVerify"
+
+	ErrGeneralOnUserSendVerificationCode = "ErrGeneralOnUserSendVerificationCode"
 
 	ErrNoAccountMatchOnUserLogin  = "ErrNoAccountMatchOnUserLogin"
 	ErrNoMatchPasswordOnUserLogin = "ErrNoMatchPasswordOnUserLogin"

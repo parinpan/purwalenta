@@ -28,9 +28,5 @@ create unique index user_id_uindex
 create unique index user_username_uindex
     on public.user (username);
 
-create unique index user_refresh_token_uindex
-    on public.user (refresh_token);
-
 create unique index user_phone_number_uindex
     on public.user (phone_number);
-

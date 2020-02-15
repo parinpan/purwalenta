@@ -29,7 +29,6 @@ type User struct {
 }
 
 type UserLoginInfo struct {
-	Token     string
 	LastLogin time.Time
 }
 

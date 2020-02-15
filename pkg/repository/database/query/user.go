@@ -3,11 +3,11 @@ package query
 const (
 	FindExistingUserQuery = `
 		SELECT
-			username, email, phone_number
+			*
 		FROM
 			public.user
 		WHERE
-			username = ? OR email = ? OR phone_number = ?
+			(username = ? OR email = ? OR phone_number = ?)
 	`
 
 	UserLoginQuery = `
@@ -25,5 +25,14 @@ const (
 		VALUES (
 			?, ?, ?, ?, ?, ?, ?, ?, ?, ?
 		)
+	`
+
+	VerifyUserSignUpQuery = `
+		UPDATE
+			public.user
+		SET
+			status = ?
+		WHERE
+			email = ?
 	`
 )

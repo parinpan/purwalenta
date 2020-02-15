@@ -1,6 +1,7 @@
 package errord
 
 import (
+	"encoding/json"
 	"errors"
 	"fmt"
 
@@ -25,10 +26,11 @@ func New(ctx echo.Context, systemError error) func(Error, ...Option) error {
 		}
 
 		ctx.Set("errord_error", errordError)
-		errorStr := fmt.Sprintf("System: %s | Errord: %+v", systemErrorMsg, errordError)
+		errorBytes, _ := json.Marshal(errorOutput{System: systemErrorMsg, Dictionary: errordError})
+		errorStr := string(errorBytes)
 
 		if option.WriteLog {
-			defer ctx.Logger().Error(errorStr)
+			go ctx.Logger().Error(errorStr)
 		}
 
 		return errors.New(errorStr)

@@ -17,9 +17,10 @@ type UserSignUp struct {
 }
 
 type UserSendVerificationCode struct {
-	ID          string `json:"id" form:"id"`
-	FullName    string `json:"full_name" form:"full_name"`
-	Username    string `json:"username" form:"username"`
-	Email       string `json:"email" form:"email" validate:"required"`
-	PhoneNumber string `json:"phone_number" form:"phone_number"`
+	Email string `json:"email" form:"email" validate:"required"`
+}
+
+type UserVerification struct {
+	Email string `json:"email" form:"email" validate:"required"`
+	Code  int    `json:"code" form:"code" validate:"required"`
 }

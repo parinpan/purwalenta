@@ -37,8 +37,27 @@ func (o *UserCacheRepository) SetSignUpVerificationCode(ctx echo.Context, verifi
 	resp.User.FullName = verification.User.FullName
 	resp.User.PhoneNumber = verification.User.PhoneNumber
 	resp.User.Email = verification.User.Email
+	resp.User.Token = verification.User.Token
 	resp.VerificationCode = verification.VerificationCode
 	resp.ExpiredAt = time.Now().Add(signUpVerificationCodeTTL)
+
+	return resp, nil
+}
+
+func (o *UserCacheRepository) GetSignUpVerificationCode(ctx echo.Context, verification entity.SignUpVerification) (entity.SignUpVerification, error) {
+	key := fmt.Sprintf(signUpVerificationCode, verification.User.Email)
+
+	var err error
+	var value []byte
+	var resp = entity.SignUpVerification{}
+
+	if value, err = o.DB.Get(key).Bytes(); nil != err {
+		return resp, err
+	}
+
+	if err = json.Unmarshal(value, &resp); nil != err {
+		return resp, err
+	}
 
 	return resp, nil
 }

@@ -27,6 +27,9 @@ RUN apk update && apk upgrade && apk add ca-certificates && apk add --update tzd
 RUN mkdir -p /var/consul/template
 RUN mkdir -p /etc/purwalenta
 
+RUN mkdir -p /var/log/purwalenta
+RUN touch /var/log/purwalenta/error.log
+
 RUN wget https://releases.hashicorp.com/consul-template/0.24.1/consul-template_0.24.1_linux_amd64.zip
 RUN unzip consul-template_0.24.1_linux_amd64.zip; rm consul-template_0.24.1_linux_amd64.zip
 RUN mv consul-template /usr/bin/consul-template

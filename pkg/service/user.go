@@ -114,15 +114,7 @@ func (service *UserService) SignUp(ctx echo.Context, req request.UserSignUp) (re
 	resp.Type = req.Type
 
 	// send user sign up email verification
-	go func() {
-		service.SendVerificationCode(ctx, request.UserSendVerificationCode{
-			ID:          uuid.String(),
-			FullName:    req.FullName,
-			Username:    req.Username,
-			Email:       req.Email,
-			PhoneNumber: req.PhoneNumber,
-		})
-	}()
+	go service.SendVerificationCode(ctx, request.UserSendVerificationCode{Email: req.Email})
 
 	return resp, nil
 }
@@ -130,21 +122,20 @@ func (service *UserService) SignUp(ctx echo.Context, req request.UserSignUp) (re
 func (service *UserService) SendVerificationCode(ctx echo.Context, req request.UserSendVerificationCode) (response.UserSendVerificationCode, error) {
 	var resp response.UserSendVerificationCode
 
-	user := entity.User{
-		ID:          req.ID,
-		FullName:    req.FullName,
-		Username:    req.Username,
-		Email:       req.Email,
-		PhoneNumber: req.PhoneNumber,
+	user, err := service.Repo.FindExistingUser(ctx, entity.User{Email: req.Email})
+	if nil != err {
+		err = errord.New(ctx, err)(errord.ErrGeneralOnUserSendVerificationCode, errord.Option{WriteLog: true})
+		return resp, err
 	}
 
-	user.Token, _ = util.GenerateUserLoginToken(config.GetConfig(), user)
+	accessToken, _ := util.GenerateUserLoginToken(config.GetConfig(), *user)
 	verification := entity.SignUpVerification{
-		User:             user,
+		User:             *user,
+		Token:            accessToken,
 		VerificationCode: util.GenerateNumberByDigitLen(4),
 	}
 
-	verification, err := service.CacheRepo.SetSignUpVerificationCode(ctx, verification)
+	verification, err = service.CacheRepo.SetSignUpVerificationCode(ctx, verification)
 	if nil != err {
 		return resp, err
 	}
@@ -160,6 +151,46 @@ func (service *UserService) SendVerificationCode(ctx echo.Context, req request.U
 	resp.Email = verification.User.Email
 	resp.ExpiredAt = verification.ExpiredAt
 	resp.Token = verification.Token
+
+	return resp, nil
+}
+
+func (service *UserService) Verify(ctx echo.Context, req request.UserVerification) (response.UserVerification, error) {
+	var resp response.UserVerification
+
+	verification, err := service.CacheRepo.GetSignUpVerificationCode(ctx, entity.SignUpVerification{
+		User: entity.User{Email: req.Email},
+	})
+
+	if nil != err {
+		err = errord.New(ctx, err)(errord.ErrGeneralOnUserVerify, errord.Option{WriteLog: true})
+		return resp, err
+	}
+
+	if verification.Email != req.Email || verification.VerificationCode != req.Code {
+		err = errord.New(ctx, nil)(errord.ErrInvalidCodeOnUserVerify, errord.Option{WriteLog: true})
+		return resp, err
+	}
+
+	// modify user status to active status
+	verified, err := service.Repo.Verify(ctx, verification.User)
+
+	if nil != err || !verified {
+		err = errord.New(ctx, nil)(errord.ErrGeneralOnUserVerify, errord.Option{WriteLog: true})
+		return resp, err
+	}
+
+	resp.Success = true
+	resp.User.ID = verification.User.ID
+	resp.User.FullName = verification.User.FullName
+	resp.User.Username = verification.User.Username
+	resp.User.Email = verification.User.Email
+	resp.User.PhoneNumber = verification.User.PhoneNumber
+	resp.User.ProfilePicture = verification.ProfilePicture
+	resp.User.Balance = verification.Balance
+	resp.User.Token = verification.User.Token
+	resp.User.Status = entity.ActiveUser
+	resp.User.Type = verification.User.Type
 
 	return resp, nil
 }

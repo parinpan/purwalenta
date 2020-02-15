@@ -14,6 +14,7 @@ func GetRoutes(e *echo.Echo) *echo.Echo {
 	userRoute, userHandler := e.Group("/user"), handler.NewUserHandler()
 	userRoute.POST("/login", userHandler.Login)
 	userRoute.POST("/sign-up", userHandler.SignUp)
+	userRoute.POST("/verify", userHandler.Verify)
 
 	oauthRoute, oauthHandler := e.Group("/oauth"), handler.NewOauthHandler()
 	oauthRoute.POST("/exchange", oauthHandler.Exchange)
