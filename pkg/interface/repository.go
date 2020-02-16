@@ -10,10 +10,12 @@ type UserRepository interface {
 	Login(ctx echo.Context, user entity.User) (*entity.User, error)
 	SignUp(ctx echo.Context, user entity.User) (bool, error)
 	Verify(ctx echo.Context, user entity.User) (bool, error)
+	ChangePassword(ctx echo.Context, user entity.User) (bool, error)
 }
 
 type UserMailingRepository interface {
 	SendSignUpVerification(ctx echo.Context, email entity.TemplateEmail) (bool, error)
+	SendForgotPassword(ctx echo.Context, email entity.TemplateEmail) (bool, error)
 }
 
 type UserCacheRepository interface {

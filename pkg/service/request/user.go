@@ -24,3 +24,13 @@ type UserVerification struct {
 	Email string `json:"email" form:"email" validate:"required"`
 	Code  int    `json:"code" form:"code" validate:"required"`
 }
+
+type UserForgotPassword struct {
+	Email string `json:"email" form:"email" validate:"required"`
+}
+
+type UserChangePassword struct {
+	Email       string `json:"email" form:"email" validate:"required"`
+	OldPassword string `json:"old_password" form:"old_password" validate:"required"`
+	NewPassword string `json:"new_password" form:"new_password" validate:"required"`
+}

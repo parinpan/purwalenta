@@ -38,7 +38,7 @@ func (service *UserService) Login(ctx echo.Context, req request.UserLogin) (resp
 
 	if !util.MatchPasswordHash(req.Password, userLogin.Password) {
 		err = errord.New(ctx, err)(errord.ErrNoMatchPasswordOnUserLogin, errord.Option{WriteLog: true})
-		return resp, nil
+		return resp, err
 	}
 
 	resp.LoginInfo.Success = true
@@ -191,6 +191,61 @@ func (service *UserService) Verify(ctx echo.Context, req request.UserVerificatio
 	resp.User.Token = verification.User.Token
 	resp.User.Status = entity.ActiveUser
 	resp.User.Type = verification.User.Type
+
+	return resp, nil
+}
+
+func (service *UserService) ForgotPassword(ctx echo.Context, req request.UserForgotPassword) (response.UserForgotPassword, error) {
+	var resp response.UserForgotPassword
+
+	user, err := service.Repo.FindExistingUser(ctx, entity.User{Email: req.Email})
+	if nil != err {
+		return resp, err
+	}
+
+	newPassword := util.GeneratePassword()
+	hashedPassword, _ := util.HashPassword(newPassword)
+	changed, err := service.Repo.ChangePassword(ctx, entity.User{ID: user.ID, Password: hashedPassword})
+
+	if nil != err || !changed {
+		return resp, err
+	}
+
+	template := builder.UserForgotPasswordTemplate(*user, newPassword)
+	sent, err := service.MailingRepo.SendForgotPassword(ctx, template)
+
+	if nil != err || !sent {
+		return resp, err
+	}
+
+	resp.Success = true
+	resp.Message = entity.UserForgotPasswordMailSuccessfullySent
+
+	return resp, nil
+}
+
+func (service *UserService) ChangePassword(ctx echo.Context, req request.UserChangePassword) (response.UserChangePassword, error) {
+	var resp response.UserChangePassword
+
+	user, err := service.Repo.FindExistingUser(ctx, entity.User{Email: req.Email})
+	if nil != err {
+		return resp, err
+	}
+
+	if !util.MatchPasswordHash(req.OldPassword, user.Password) {
+		err = errord.New(ctx, err)(errord.ErrNoMatchPasswordOnUserLogin, errord.Option{WriteLog: true})
+		return resp, err
+	}
+
+	newPassword, _ := util.HashPassword(req.NewPassword)
+	changed, err := service.Repo.ChangePassword(ctx, entity.User{ID: user.ID, Password: newPassword})
+
+	if nil != err || !changed {
+		return resp, err
+	}
+
+	resp.Success = true
+	resp.Message = entity.UserPasswordChangedSuccessfully
 
 	return resp, nil
 }

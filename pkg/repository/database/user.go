@@ -72,3 +72,12 @@ func (o *UserRepository) Verify(ctx echo.Context, user entity.User) (bool, error
 
 	return numRowsAffected > 0, err
 }
+
+func (o *UserRepository) ChangePassword(ctx echo.Context, user entity.User) (bool, error) {
+	var result = o.DB.MustExec(o.DB.Rebind(query.UserChangePasswordQuery), user.Password, user.ID)
+
+	// get affected rows total and its error if exists
+	numRowsAffected, err := result.RowsAffected()
+
+	return numRowsAffected > 0, err
+}

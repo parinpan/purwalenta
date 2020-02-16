@@ -5,7 +5,8 @@ type (
 )
 
 const (
-	SignUpEmailTemplateFlag EmailTemplate = "user_registration"
+	SignUpEmailTemplateFlag        EmailTemplate = "user_registration"
+	UserForgotPasswordTemplateFlag EmailTemplate = "user_forgot_password"
 )
 
 type EmailBase struct {

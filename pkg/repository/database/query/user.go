@@ -35,4 +35,13 @@ const (
 		WHERE
 			email = ?
 	`
+
+	UserChangePasswordQuery = `
+		UPDATE
+			public.user
+		SET
+			password = ?
+		WHERE
+			id = ?
+	`
 )

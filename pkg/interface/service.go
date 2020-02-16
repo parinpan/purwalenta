@@ -11,6 +11,8 @@ type UserService interface {
 	SignUp(echo.Context, request.UserSignUp) (response.UserSignUp, error)
 	SendVerificationCode(echo.Context, request.UserSendVerificationCode) (response.UserSendVerificationCode, error)
 	Verify(echo.Context, request.UserVerification) (response.UserVerification, error)
+	ForgotPassword(echo.Context, request.UserForgotPassword) (response.UserForgotPassword, error)
+	ChangePassword(echo.Context, request.UserChangePassword) (response.UserChangePassword, error)
 }
 
 type StudentService interface {

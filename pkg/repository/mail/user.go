@@ -14,3 +14,8 @@ func (mail *UserMailingRepository) SendSignUpVerification(ctx echo.Context, emai
 	err := driver.SendTemplateMail(mail.Driver, email)
 	return nil == err, err
 }
+
+func (mail *UserMailingRepository) SendForgotPassword(ctx echo.Context, email entity.TemplateEmail) (bool, error) {
+	err := driver.SendTemplateMail(mail.Driver, email)
+	return nil == err, err
+}

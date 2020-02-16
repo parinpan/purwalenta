@@ -50,3 +50,13 @@ type UserVerification struct {
 	User
 	Success bool `json:"success"`
 }
+
+type UserForgotPassword struct {
+	Success bool   `json:"success"`
+	Message string `json:"message"`
+}
+
+type UserChangePassword struct {
+	Success bool   `json:"success"`
+	Message string `json:"message"`
+}
