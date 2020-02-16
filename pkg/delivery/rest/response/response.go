@@ -25,8 +25,6 @@ func New() *response {
 
 func (resp *response) ToJSON(ctx echo.Context) error {
 	errorComponent, _ := ctx.Get("errord_error").(errord.ErrorComponent)
-
-	resp.Error = errorComponent
 	httpStatusCode := http.StatusOK
 
 	if errorComponent.HttpStatus > 0 {
@@ -34,6 +32,9 @@ func (resp *response) ToJSON(ctx echo.Context) error {
 	} else {
 		errorComponent.HttpStatus = httpStatusCode
 	}
+
+	// set final error component to response
+	resp.Error = errorComponent
 
 	return ctx.JSON(httpStatusCode, resp)
 }
