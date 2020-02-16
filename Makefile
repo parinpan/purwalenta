@@ -1,8 +1,8 @@
 docker-run: docker-down
-	@docker-compose -f build/docker/docker-compose.yaml up --build
+	@docker-compose -f build/docker/docker-compose.yaml up --build --force-recreate
 
 docker-runbg: docker-down
-	@docker-compose -f build/docker/docker-compose.yaml up --build --detach
+	@docker-compose -f build/docker/docker-compose.yaml up --build --force-recreate --detach
 
 docker-down:
 	@docker-compose -f build/docker/docker-compose.yaml down
