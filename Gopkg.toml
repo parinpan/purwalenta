@@ -31,11 +31,15 @@
 
 [[constraint]]
   name = "github.com/go-playground/validator"
-  version = "10.1.0"
+  version = "10.2.0"
 
 [[constraint]]
   name = "github.com/go-redis/redis"
   version = "6.15.7"
+
+[[constraint]]
+  name = "github.com/go-resty/resty"
+  version = "2.1.0"
 
 [[constraint]]
   name = "github.com/google/uuid"
@@ -48,6 +52,10 @@
 [[constraint]]
   name = "github.com/labstack/echo"
   version = "3.3.10"
+
+[[constraint]]
+  name = "github.com/labstack/gommon"
+  version = "0.3.0"
 
 [[constraint]]
   name = "github.com/lib/pq"
@@ -64,6 +72,10 @@
 [[constraint]]
   branch = "master"
   name = "golang.org/x/crypto"
+
+[[constraint]]
+  branch = "master"
+  name = "golang.org/x/oauth2"
 
 [[constraint]]
   name = "gopkg.in/gomail.v2"

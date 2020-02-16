@@ -10,7 +10,7 @@ services:
         - postgres_server
       volumes:
           - purwalenta_binary:/purwalenta
-          - /var/log/purwalenta/error.log:/var/log/purwalenta/error.log
+          - /var/log/purwalenta/:/var/log/purwalenta/
       ports:
         - 8085:9099
       networks:

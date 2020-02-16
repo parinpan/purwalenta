@@ -29,8 +29,10 @@ func (resp *response) ToJSON(ctx echo.Context) error {
 	resp.Error = errorComponent
 	httpStatusCode := http.StatusOK
 
-	if errorComponent.HttpStatus >= 0 {
+	if errorComponent.HttpStatus > 0 {
 		httpStatusCode = errorComponent.HttpStatus
+	} else {
+		errorComponent.HttpStatus = httpStatusCode
 	}
 
 	return ctx.JSON(httpStatusCode, resp)
