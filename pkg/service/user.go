@@ -75,7 +75,7 @@ func (service *UserService) SignUp(ctx echo.Context, req request.UserSignUp) (re
 		return resp, err
 	}
 
-	if takenFields, isTaken := validation.ValidateUserSignUpTakenFields(*existingUser); isTaken {
+	if takenFields, isTaken := validation.ValidateUserSignUpTakenFields(req, *existingUser); isTaken {
 		resp.SignUpInfo.TakenFields = takenFields
 		resp.SignUpInfo.UserAlreadyExist = true
 		takenFieldsString := strings.Join(takenFields, ", ")
