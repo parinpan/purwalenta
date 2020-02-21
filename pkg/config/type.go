@@ -55,8 +55,7 @@ type IncomingSMTPConfig struct {
 }
 
 type Oauth2Config struct {
-	Google   GoogleOauth2Config
-	Facebook FacebookOauth2Config
+	Google GoogleOauth2Config
 }
 
 type GoogleOauth2Config struct {
@@ -64,10 +63,4 @@ type GoogleOauth2Config struct {
 	ClientSecret string
 	CallbackURL  string
 	Scopes       []string
-}
-
-type FacebookOauth2Config struct {
-	ClientID     string
-	ClientSecret string
-	CallbackURL  string
 }

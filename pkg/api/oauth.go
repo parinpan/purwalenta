@@ -36,7 +36,6 @@ func newDefaultOauthAPI() *OauthAPI {
 	service := new(servicePkg.OauthService)
 	service.UserRepo = userRepo
 	service.GoogleOauthRepo = new(apicalls.GoogleOauthRepository)
-	service.FacebookOauthRepo = new(apicalls.GoogleOauthRepository)
 
 	oauthInstances[DefaultOauthAPIFlag] = &OauthAPI{
 		Service: service,

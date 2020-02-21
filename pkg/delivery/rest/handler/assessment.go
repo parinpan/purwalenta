@@ -1,8 +1,6 @@
 package handler
 
 import (
-	"net/http"
-
 	"github.com/labstack/echo"
 )
 
@@ -13,6 +11,6 @@ func NewAssessmentHandler() *assessmentHandler {
 	return &assessmentHandler{}
 }
 
-func (handler *assessmentHandler) Index(ctx echo.Context) error {
-	return ctx.JSON(http.StatusAccepted, map[string]interface{}{"ok": true})
+func (handler *assessmentHandler) Personality(ctx echo.Context) error {
+	return nil
 }

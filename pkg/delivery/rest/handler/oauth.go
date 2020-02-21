@@ -25,17 +25,14 @@ func (handler *oauthHandler) Exchange(ctx echo.Context) error {
 	var err error
 
 	if err = ctx.Bind(req); nil != err {
-		ctx.Logger().Error(err)
 		return ctx.JSON(http.StatusBadRequest, resp)
 	}
 
 	if err = ctx.Validate(req); nil != err {
-		ctx.Logger().Error(err)
 		return ctx.JSON(http.StatusBadRequest, resp)
 	}
 
 	if resp.Data, err = handler.api.Service.Exchange(ctx, *req); nil != err {
-		ctx.Logger().Error(err)
 		return ctx.JSON(http.StatusInternalServerError, resp)
 	}
 

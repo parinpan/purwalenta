@@ -13,15 +13,12 @@ import (
 	"github.com/purwalenta/purwalenta/pkg/service/response"
 	"github.com/purwalenta/purwalenta/pkg/util"
 	"golang.org/x/oauth2"
-	_ "golang.org/x/oauth2"
-	"golang.org/x/oauth2/facebook"
 	"golang.org/x/oauth2/google"
 )
 
 type OauthService struct {
-	UserRepo          _interface.UserRepository
-	GoogleOauthRepo   _interface.OauthRepository
-	FacebookOauthRepo _interface.OauthRepository
+	UserRepo        _interface.UserRepository
+	GoogleOauthRepo _interface.OauthRepository
 }
 
 func (service *OauthService) Exchange(ctx echo.Context, req request.OauthExchange) (response.OauthExchange, error) {
@@ -67,8 +64,6 @@ func getOauthConfig(provider string, cfg config.Oauth2Config) *oauth2.Config {
 	switch provider {
 	case "google":
 		return getGoogleOauthConfig(cfg)
-	case "facebook":
-		return getFacebookOauthConfig(cfg)
 	}
 
 	return nil
@@ -78,8 +73,6 @@ func getOauthUserInfo(provider string, service *OauthService) func(echo.Context,
 	switch provider {
 	case "google":
 		return service.GoogleOauthRepo.GetUserInfo
-	case "facebook":
-		return service.FacebookOauthRepo.GetUserInfo
 	}
 
 	return nil
@@ -92,14 +85,5 @@ func getGoogleOauthConfig(cfg config.Oauth2Config) *oauth2.Config {
 		Endpoint:     google.Endpoint,
 		RedirectURL:  cfg.Google.CallbackURL,
 		Scopes:       cfg.Google.Scopes,
-	}
-}
-
-func getFacebookOauthConfig(cfg config.Oauth2Config) *oauth2.Config {
-	return &oauth2.Config{
-		ClientID:     cfg.Facebook.ClientID,
-		ClientSecret: cfg.Facebook.ClientSecret,
-		Endpoint:     facebook.Endpoint,
-		RedirectURL:  cfg.Facebook.CallbackURL,
 	}
 }

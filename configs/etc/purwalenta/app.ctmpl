@@ -9,6 +9,10 @@ Database:
     MaxIdle: {{ key "service/purwalenta/database/max_idle" }}
     MaxOpen: {{ key "service/purwalenta/database/max_open" }}
 
+  Redis:
+    Address: '{{ key "service/purwalenta/redis/address" }}'
+    Password: '{{ key "service/purwalenta/redis/password" }}'
+
 UserAuthentication:
   SecretToken: '{{ key "service/purwalenta/user_authentication/secret_token" }}'
   MaxLifeTime: {{ key "service/purwalenta/user_authentication/max_life_time" }}
@@ -31,9 +35,3 @@ Oauth2:
     CallbackURL: '{{ key "service/purwalenta/oauth/google/callback_url" }}'
     Scopes:
       - '{{ key "service/purwalenta/oauth/google/scopes_1" }}'
-  Facebook:
-    ClientID: '{{ key "service/purwalenta/oauth/facebook/client_id" }}'
-    ClientSecret: '{{ key "service/purwalenta/oauth/facebook/client_secret" }}'
-    CallbackURL: '{{ key "service/purwalenta/oauth/facebook/callback_url" }}'
-    Scopes:
-      - '{{ key "service/purwalenta/oauth/facebook/scopes_1" }}'

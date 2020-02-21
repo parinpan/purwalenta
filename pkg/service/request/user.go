@@ -8,7 +8,7 @@ type UserLogin struct {
 }
 
 type UserSignUp struct {
-	Username    string `json:"username" form:"username" validate:"required"`
+	Username    string `json:"username" form:"username"`
 	FullName    string `json:"full_name" form:"full_name"`
 	Email       string `json:"email" form:"email" validate:"required"`
 	PhoneNumber string `json:"phone_number" form:"phone_number" validate:"required"`

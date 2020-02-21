@@ -15,6 +15,10 @@ type UserService interface {
 	ChangePassword(echo.Context, request.UserChangePassword) (response.UserChangePassword, error)
 }
 
+type AssessmentService interface {
+	FindPersonalityQuestions(echo.Context, request.FindPersonalityQuestions) (response.FindPersonalityQuestions, error)
+}
+
 type StudentService interface {
 }
 

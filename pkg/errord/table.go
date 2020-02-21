@@ -6,12 +6,7 @@ import (
 
 var lookupTable = []ErrorComponent{
 	{
-		Type:       ErrFindExistingUserOnUserSignUp,
-		HttpStatus: http.StatusInternalServerError,
-		Message:    "Duh... sedang terjadi kesalahan. Coba kembali beberapa saat lagi ya.",
-	},
-	{
-		Type:       ErrUserCreationOnUserSignUp,
+		Type:       ErrGeneralOnCommonScenario,
 		HttpStatus: http.StatusInternalServerError,
 		Message:    "Duh... sedang terjadi kesalahan. Coba kembali beberapa saat lagi ya.",
 	},
@@ -26,11 +21,6 @@ var lookupTable = []ErrorComponent{
 		Message:    "Kode verifikasi yang kamu masukkan salah. Coba lagi ya.",
 	},
 	{
-		Type:       ErrGeneralOnUserSendVerificationCode,
-		HttpStatus: http.StatusInternalServerError,
-		Message:    "Duh... sedang terjadi kesalahan. Coba kembali beberapa saat lagi ya.",
-	},
-	{
 		Type:       ErrNoAccountMatchOnUserLogin,
 		HttpStatus: http.StatusBadRequest,
 		Message:    "Pastikan username dan password kamu sudah benar ya.",
@@ -39,5 +29,15 @@ var lookupTable = []ErrorComponent{
 		Type:       ErrNoMatchPasswordOnUserLogin,
 		HttpStatus: http.StatusBadRequest,
 		Message:    "Pastikan username dan password kamu sudah benar ya.",
+	},
+	{
+		Type:       ErrNoMatchPasswordOnUserChangePassword,
+		HttpStatus: http.StatusBadRequest,
+		Message:    "Pastikan password kamu yang sebelumnya sudah benar ya.",
+	},
+	{
+		Type:       ErrNoMatchAccountOnUserForgotPassword,
+		HttpStatus: http.StatusBadRequest,
+		Message:    "Email kamu tidak terdaftar.",
 	},
 }

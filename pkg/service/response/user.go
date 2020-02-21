@@ -47,8 +47,8 @@ type UserSendVerificationCode struct {
 }
 
 type UserVerification struct {
-	User
-	Success bool `json:"success"`
+	User    UserLogin `json:"user"`
+	Success bool      `json:"success"`
 }
 
 type UserForgotPassword struct {

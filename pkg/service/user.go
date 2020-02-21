@@ -42,7 +42,12 @@ func (service *UserService) Login(ctx echo.Context, req request.UserLogin) (resp
 	}
 
 	resp.LoginInfo.Success = true
-	userLogin.Token, _ = util.GenerateUserLoginToken(config.GetConfig(), *userLogin)
+	userLogin.Token, err = util.GenerateUserLoginToken(config.GetConfig(), *userLogin)
+
+	if nil != err {
+		err = errord.New(ctx, err)(errord.ErrGeneralOnCommonScenario, errord.Option{WriteLog: true})
+		return resp, err
+	}
 
 	resp.ID = userLogin.ID
 	resp.FullName = userLogin.FullName
@@ -66,7 +71,7 @@ func (service *UserService) SignUp(ctx echo.Context, req request.UserSignUp) (re
 	})
 
 	if nil != err {
-		err = errord.New(ctx, err)(errord.ErrFindExistingUserOnUserSignUp, errord.Option{WriteLog: true})
+		err = errord.New(ctx, err)(errord.ErrGeneralOnCommonScenario, errord.Option{WriteLog: true})
 		return resp, err
 	}
 
@@ -92,7 +97,7 @@ func (service *UserService) SignUp(ctx echo.Context, req request.UserSignUp) (re
 	resp.SignUpInfo.Success, err = service.Repo.SignUp(ctx, entity.User{
 		ID:          uuid.String(),
 		FullName:    req.FullName,
-		Username:    req.Username,
+		Username:    req.Email, // now we consider using email as user's username too
 		Email:       req.Email,
 		Password:    hashedPassword,
 		PhoneNumber: req.PhoneNumber,
@@ -101,7 +106,7 @@ func (service *UserService) SignUp(ctx echo.Context, req request.UserSignUp) (re
 	})
 
 	if nil != err {
-		err = errord.New(ctx, err)(errord.ErrUserCreationOnUserSignUp, errord.Option{WriteLog: true})
+		err = errord.New(ctx, err)(errord.ErrGeneralOnCommonScenario, errord.Option{WriteLog: true})
 		return resp, err
 	}
 
@@ -124,7 +129,7 @@ func (service *UserService) SendVerificationCode(ctx echo.Context, req request.U
 
 	user, err := service.Repo.FindExistingUser(ctx, entity.User{Email: req.Email})
 	if nil != err {
-		err = errord.New(ctx, err)(errord.ErrGeneralOnUserSendVerificationCode, errord.Option{WriteLog: true})
+		err = errord.New(ctx, err)(errord.ErrGeneralOnCommonScenario, errord.Option{WriteLog: true})
 		return resp, err
 	}
 
@@ -137,6 +142,7 @@ func (service *UserService) SendVerificationCode(ctx echo.Context, req request.U
 
 	verification, err = service.CacheRepo.SetSignUpVerificationCode(ctx, verification)
 	if nil != err {
+		err = errord.New(ctx, err)(errord.ErrGeneralOnCommonScenario, errord.Option{WriteLog: true})
 		return resp, err
 	}
 
@@ -144,6 +150,7 @@ func (service *UserService) SendVerificationCode(ctx echo.Context, req request.U
 	_, err = service.MailingRepo.SendSignUpVerification(ctx, template)
 
 	if nil != err {
+		err = errord.New(ctx, err)(errord.ErrGeneralOnCommonScenario, errord.Option{WriteLog: true})
 		return resp, err
 	}
 
@@ -163,7 +170,7 @@ func (service *UserService) Verify(ctx echo.Context, req request.UserVerificatio
 	})
 
 	if nil != err {
-		err = errord.New(ctx, err)(errord.ErrGeneralOnUserVerify, errord.Option{WriteLog: true})
+		err = errord.New(ctx, err)(errord.ErrGeneralOnCommonScenario, errord.Option{WriteLog: true})
 		return resp, err
 	}
 
@@ -176,19 +183,20 @@ func (service *UserService) Verify(ctx echo.Context, req request.UserVerificatio
 	verified, err := service.Repo.Verify(ctx, verification.User)
 
 	if nil != err || !verified {
-		err = errord.New(ctx, nil)(errord.ErrGeneralOnUserVerify, errord.Option{WriteLog: true})
+		err = errord.New(ctx, err)(errord.ErrGeneralOnCommonScenario, errord.Option{WriteLog: true})
 		return resp, err
 	}
 
 	resp.Success = true
+	resp.User.LoginInfo.Success = true
 	resp.User.ID = verification.User.ID
 	resp.User.FullName = verification.User.FullName
 	resp.User.Username = verification.User.Username
 	resp.User.Email = verification.User.Email
 	resp.User.PhoneNumber = verification.User.PhoneNumber
 	resp.User.ProfilePicture = verification.ProfilePicture
-	resp.User.Balance = verification.Balance
-	resp.User.Token = verification.User.Token
+	resp.User.Balance = verification.User.Balance
+	resp.User.Token = verification.Token
 	resp.User.Status = entity.ActiveUser
 	resp.User.Type = verification.User.Type
 
@@ -199,7 +207,8 @@ func (service *UserService) ForgotPassword(ctx echo.Context, req request.UserFor
 	var resp response.UserForgotPassword
 
 	user, err := service.Repo.FindExistingUser(ctx, entity.User{Email: req.Email})
-	if nil != err {
+	if nil != err || user.ID == "" {
+		err = errord.New(ctx, err)(errord.ErrNoMatchAccountOnUserForgotPassword, errord.Option{WriteLog: true})
 		return resp, err
 	}
 
@@ -215,6 +224,7 @@ func (service *UserService) ForgotPassword(ctx echo.Context, req request.UserFor
 	sent, err := service.MailingRepo.SendForgotPassword(ctx, template)
 
 	if nil != err || !sent {
+		err = errord.New(ctx, err)(errord.ErrGeneralOnCommonScenario, errord.Option{WriteLog: true})
 		return resp, err
 	}
 
@@ -233,7 +243,7 @@ func (service *UserService) ChangePassword(ctx echo.Context, req request.UserCha
 	}
 
 	if !util.MatchPasswordHash(req.OldPassword, user.Password) {
-		err = errord.New(ctx, err)(errord.ErrNoMatchPasswordOnUserLogin, errord.Option{WriteLog: true})
+		err = errord.New(ctx, err)(errord.ErrNoMatchPasswordOnUserChangePassword, errord.Option{WriteLog: true})
 		return resp, err
 	}
 
@@ -241,6 +251,7 @@ func (service *UserService) ChangePassword(ctx echo.Context, req request.UserCha
 	changed, err := service.Repo.ChangePassword(ctx, entity.User{ID: user.ID, Password: newPassword})
 
 	if nil != err || !changed {
+		err = errord.New(ctx, err)(errord.ErrGeneralOnCommonScenario, errord.Option{WriteLog: true})
 		return resp, err
 	}
 

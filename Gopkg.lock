@@ -185,25 +185,25 @@
   branch = "master"
   name = "golang.org/x/crypto"
   packages = ["acme","acme/autocert","bcrypt","blowfish"]
-  revision = "1d94cc7ab1c630336ab82ccb9c9cda72a875c382"
+  revision = "1ad67e1f0ef495d4014b6ffd8f2cf80f91fffbce"
 
 [[projects]]
   branch = "master"
   name = "golang.org/x/net"
   packages = ["context","context/ctxhttp","idna","publicsuffix"]
-  revision = "16171245cfb220d5317888b716d69c1fb4e7992b"
+  revision = "46282727080fcf56da5781d0a9ef2fda184be5e6"
 
 [[projects]]
   branch = "master"
   name = "golang.org/x/oauth2"
-  packages = [".","facebook","google","internal","jws","jwt"]
+  packages = [".","google","internal","jws","jwt"]
   revision = "bf48bf16ab8d622ce64ec6ce98d2c98f916b6303"
 
 [[projects]]
   branch = "master"
   name = "golang.org/x/sys"
   packages = ["unix"]
-  revision = "12a6c2dcc1e4cb348b57847c73987099e261714b"
+  revision = "cb0a6d8edb6c3528b01a0be84a5fe513dbf880a6"
 
 [[projects]]
   name = "golang.org/x/text"
@@ -244,6 +244,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "aa39c49a9fb2316f2694aeeeb65093b560559becb12b2e977410c2bc8ba9b3a1"
+  inputs-digest = "34b17f8780401819fcd7b4b06b0306a6717f0e2a34c235f0d952d07889ed8feb"
   solver-name = "gps-cdcl"
   solver-version = 1

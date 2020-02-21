@@ -1,7 +1,9 @@
 docker-run: docker-down
+	@dep ensure -v
 	@docker-compose -f build/docker/docker-compose.yaml up --build --force-recreate
 
 docker-runbg: docker-down
+	@dep ensure -v
 	@docker-compose -f build/docker/docker-compose.yaml up -d --build --force-recreate
 
 docker-down:
@@ -23,3 +25,7 @@ docker-hard-reset: docker-down
 
 app-shell:
 	@docker exec -it purwalenta_binary sh
+
+consul-backup:
+	@docker exec -it purwalenta_consul_server consul snapshot save backup.snap
+	@docker cp -a purwalenta_consul_server:backup.snap ~/backup.snap

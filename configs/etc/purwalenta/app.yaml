@@ -1,5 +1,5 @@
 App:
-  Name: 'Purwalenta - Production'
+  Name: 'Purwalenta - Staging'
   Version: '1.0'
   SignUpEmailAgent: 'user@purwalenta.com'
 
@@ -21,7 +21,7 @@ UserAuthentication:
 SMTP:
   Identity: 'Purwalenta User Management'
   Username: 'user@purwalenta.com'
-  Password: 'fjU1i[i6,vI5'
+  Password: '$c1[fO$mvqrc'
   Outgoing:
     Server: 'srv75.niagahoster.com'
     Port: 587
@@ -34,11 +34,5 @@ Oauth2:
     ClientID: '1073365596235-7u9g3f4aruilp6dukj1a8ltv02p0b3pm.apps.googleusercontent.com'
     ClientSecret: 'PA5lWBZyWM_dI9ok9pvOupS9'
     CallbackURL: 'https://purwalenta.com'
-    Scopes:
-      - 'https://www.googleapis.com/auth/userinfo.profile'
-  Facebook:
-    ClientID: ''
-    ClientSecret: ''
-    CallbackURL: ''
     Scopes:
       - 'https://www.googleapis.com/auth/userinfo.profile'

@@ -31,15 +31,11 @@ type (
 )
 
 const (
-	ErrFindExistingUserOnUserSignUp = "ErrFindExistingUserOnUserSignUp"
-	ErrUserCreationOnUserSignUp     = "ErrUserCreationOnUserSignUp"
-	ErrFieldHasTakenOnUserSignUp    = "ErrFieldHasTakenOnUserSignUp"
-
-	ErrGeneralOnUserVerify     = "ErrInvalidCodeOnUserVerify"
-	ErrInvalidCodeOnUserVerify = "ErrInvalidCodeOnUserVerify"
-
-	ErrGeneralOnUserSendVerificationCode = "ErrGeneralOnUserSendVerificationCode"
-
-	ErrNoAccountMatchOnUserLogin  = "ErrNoAccountMatchOnUserLogin"
-	ErrNoMatchPasswordOnUserLogin = "ErrNoMatchPasswordOnUserLogin"
+	ErrGeneralOnCommonScenario             = "ErrGeneralOnCommonScenario"
+	ErrFieldHasTakenOnUserSignUp           = "ErrFieldHasTakenOnUserSignUp"
+	ErrInvalidCodeOnUserVerify             = "ErrInvalidCodeOnUserVerify"
+	ErrNoAccountMatchOnUserLogin           = "ErrNoAccountMatchOnUserLogin"
+	ErrNoMatchPasswordOnUserLogin          = "ErrNoMatchPasswordOnUserLogin"
+	ErrNoMatchPasswordOnUserChangePassword = "ErrNoMatchPasswordOnUserChangePassword"
+	ErrNoMatchAccountOnUserForgotPassword  = "ErrNoMatchAccountOnUserForgotPassword"
 )
