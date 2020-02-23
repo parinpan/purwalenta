@@ -1,7 +1,6 @@
 package response
 
 import (
-	"fmt"
 	"net/http"
 	"time"
 
@@ -33,8 +32,6 @@ func (resp *response) ToJSON(ctx echo.Context) error {
 	} else {
 		errorComponent.HttpStatus = httpStatusCode
 	}
-
-	fmt.Println(resp)
 
 	// set final error component to response
 	resp.Error = errorComponent

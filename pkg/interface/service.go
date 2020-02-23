@@ -16,7 +16,7 @@ type UserService interface {
 }
 
 type AssessmentService interface {
-	FindPersonalityQuestions(echo.Context, request.FindPersonalityQuestions) (response.FindPersonalityQuestions, error)
+	FindPersonalityQuestions(echo.Context, request.FindPersonalityQuestions) (response.PersonalityQuestion, error)
 }
 
 type StudentService interface {

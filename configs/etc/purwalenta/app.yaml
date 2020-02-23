@@ -18,6 +18,9 @@ UserAuthentication:
   SecretToken: 'cBBqT%,$WEF:f9mBW7qSvkuSnSO{7mLh*xuhofUm"E=#KdloyPlbWyj>^#551}A'
   MaxLifeTime: 86400000000
 
+Assessment:
+  PersonalityQuestionsJSON: ''
+
 SMTP:
   Identity: 'Purwalenta User Management'
   Username: 'user@purwalenta.com'

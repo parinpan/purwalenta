@@ -28,7 +28,7 @@ type OauthRepository interface {
 }
 
 type AssessmentRepository interface {
-	GetPersonalityAssessmentQuestions(ctx echo.Context) ([]entity.PersonalityAssessmentQuestion, error)
+	GetPersonalityQuestions(ctx echo.Context) (entity.PersonalityAssessmentQuestion, error)
 }
 
 type StudentRepository interface {

@@ -4,6 +4,7 @@ type Config struct {
 	App                AppConfig
 	Database           DatabaseConfig
 	UserAuthentication UserAuthenticationConfig
+	Assessment         AssessmentConfig
 	SMTP               SMTPConfig
 	Oauth2             Oauth2Config
 }
@@ -63,4 +64,8 @@ type GoogleOauth2Config struct {
 	ClientSecret string
 	CallbackURL  string
 	Scopes       []string
+}
+
+type AssessmentConfig struct {
+	PersonalityQuestionsJSON string
 }

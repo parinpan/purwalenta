@@ -1,4 +1,3 @@
 package response
 
-type FindPersonalityQuestions struct {
-}
+type PersonalityQuestion map[string]interface{}

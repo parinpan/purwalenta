@@ -8,9 +8,10 @@ import (
 )
 
 type AssessmentService struct {
-	repo _interface.AssessmentRepository
+	Repo _interface.AssessmentRepository
 }
 
-func (service *AssessmentService) FindPersonalityQuestions(ctx echo.Context, req request.FindPersonalityQuestions) (response.FindPersonalityQuestions, error) {
-	return response.FindPersonalityQuestions{}, nil
+func (service *AssessmentService) FindPersonalityQuestions(ctx echo.Context, req request.FindPersonalityQuestions) (response.PersonalityQuestion, error) {
+	var questions, _ = service.Repo.GetPersonalityQuestions(ctx)
+	return response.PersonalityQuestion(questions), nil
 }

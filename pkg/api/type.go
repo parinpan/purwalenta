@@ -12,6 +12,8 @@ const (
 	DefaultUserAPIFlag Type = 1
 
 	DefaultOauthAPIFlag Type = 1
+
+	DefaultAssessmentAPIFlag Type = 1
 )
 
 type (

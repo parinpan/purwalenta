@@ -1,7 +1,3 @@
 package entity
 
-type PersonalityAssessmentQuestion struct {
-	Round int
-	Page  int
-	Text  string
-}
+type PersonalityAssessmentQuestion map[string]interface{}

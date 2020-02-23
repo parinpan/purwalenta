@@ -17,6 +17,9 @@ UserAuthentication:
   SecretToken: '{{ key "service/purwalenta/user_authentication/secret_token" }}'
   MaxLifeTime: {{ key "service/purwalenta/user_authentication/max_life_time" }}
 
+Assessment:
+  PersonalityQuestionsJSON: '{{ key "service/purwalenta/assessment/personality_questions_json" }}'
+
 SMTP:
   Identity: '{{ key "service/purwalenta/smtp/identity" }}'
   Username: '{{ key "service/purwalenta/smtp/username" }}'
