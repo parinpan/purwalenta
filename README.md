@@ -1,4 +1,4 @@
-# Purwalenta
+# Description
 
 <p align="center">
     <img src="https://user-images.githubusercontent.com/14908455/81495242-25535c00-92d9-11ea-93d3-c193b65824f3.png"/>
