@@ -1,5 +1,9 @@
 # Purwalenta
 
+<p align="center">
+    <img src="https://user-images.githubusercontent.com/14908455/81495242-25535c00-92d9-11ea-93d3-c193b65824f3.png"/>
+</p>
+
 Purwalenta is an ed-tech startup. In 2019, I decided to leave Purwalenta because of the lack of time to continue maintaining its technology. Initially, Purwalenta is built using Go with EBI (Entity-Boundary-Interactor) architecture.
 
 # Background
