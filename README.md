@@ -8,7 +8,7 @@ Purwalenta is an ed-tech startup. In early 2020, I decided to leave Purwalenta b
 
 # Background
 
-I released it to the public as a facilitator for anybody out there who seeks reference to how the EBI architecture is being constructed from another perspective. The picture below shows how the structure of EBI architecture looks like.
+I released it to the public as a facilitator for anybody out there who seeks reference to dig deeper into how the EBI architecture is being constructed from another perspective. The picture below shows how the architecture diagram looks like.
 
 <p align="center">
     <img src="https://user-images.githubusercontent.com/14908455/81495109-0f916700-92d8-11ea-96cf-0eaded01114b.png"/>
