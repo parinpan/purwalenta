@@ -2,8 +2,8 @@ package _interface
 
 import (
 	"github.com/labstack/echo"
-	"github.com/purwalenta/purwalenta/pkg/service/request"
-	"github.com/purwalenta/purwalenta/pkg/service/response"
+	"github.com/parinpan/purwalenta/pkg/service/request"
+	"github.com/parinpan/purwalenta/pkg/service/response"
 )
 
 type UserService interface {

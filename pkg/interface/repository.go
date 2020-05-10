@@ -2,7 +2,7 @@ package _interface
 
 import (
 	"github.com/labstack/echo"
-	"github.com/purwalenta/purwalenta/pkg/entity"
+	"github.com/parinpan/purwalenta/pkg/entity"
 )
 
 type UserRepository interface {

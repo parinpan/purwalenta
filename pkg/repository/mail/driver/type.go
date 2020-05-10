@@ -1,6 +1,6 @@
 package driver
 
-import "github.com/purwalenta/purwalenta/pkg/entity"
+import "github.com/parinpan/purwalenta/pkg/entity"
 
 type (
 	EmailDriver int

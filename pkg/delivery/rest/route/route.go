@@ -3,8 +3,8 @@ package route
 import (
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
-	"github.com/purwalenta/purwalenta/pkg/config"
-	"github.com/purwalenta/purwalenta/pkg/delivery/rest/handler"
+	"github.com/parinpan/purwalenta/pkg/config"
+	"github.com/parinpan/purwalenta/pkg/delivery/rest/handler"
 )
 
 func GetRoutes(e *echo.Echo) *echo.Echo {

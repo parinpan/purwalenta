@@ -1,8 +1,8 @@
 package validation
 
 import (
-	"github.com/purwalenta/purwalenta/pkg/entity"
-	"github.com/purwalenta/purwalenta/pkg/service/request"
+	"github.com/parinpan/purwalenta/pkg/entity"
+	"github.com/parinpan/purwalenta/pkg/service/request"
 )
 
 func ValidateUserSignUpTakenFields(req request.UserSignUp, user entity.User) (takenFields []string, isTaken bool) {

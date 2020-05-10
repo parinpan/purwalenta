@@ -7,7 +7,7 @@ import (
 
 	"github.com/go-redis/redis"
 	"github.com/labstack/echo"
-	"github.com/purwalenta/purwalenta/pkg/entity"
+	"github.com/parinpan/purwalenta/pkg/entity"
 )
 
 const (

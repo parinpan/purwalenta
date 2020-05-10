@@ -2,7 +2,7 @@ package driver
 
 import (
 	"github.com/go-redis/redis"
-	"github.com/purwalenta/purwalenta/pkg/config"
+	"github.com/parinpan/purwalenta/pkg/config"
 )
 
 func GetRedisDriver() (*redis.Client, error) {

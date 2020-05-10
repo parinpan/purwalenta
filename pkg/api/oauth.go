@@ -1,11 +1,11 @@
 package api
 
 import (
-	_interface "github.com/purwalenta/purwalenta/pkg/interface"
-	"github.com/purwalenta/purwalenta/pkg/repository/apicalls"
-	"github.com/purwalenta/purwalenta/pkg/repository/database"
-	"github.com/purwalenta/purwalenta/pkg/repository/database/driver"
-	servicePkg "github.com/purwalenta/purwalenta/pkg/service"
+	_interface "github.com/parinpan/purwalenta/pkg/interface"
+	"github.com/parinpan/purwalenta/pkg/repository/apicalls"
+	"github.com/parinpan/purwalenta/pkg/repository/database"
+	"github.com/parinpan/purwalenta/pkg/repository/database/driver"
+	servicePkg "github.com/parinpan/purwalenta/pkg/service"
 )
 
 var (

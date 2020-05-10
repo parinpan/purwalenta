@@ -5,7 +5,7 @@ import (
 	"time"
 
 	"github.com/labstack/echo"
-	"github.com/purwalenta/purwalenta/pkg/errord"
+	"github.com/parinpan/purwalenta/pkg/errord"
 )
 
 type Configuration struct {

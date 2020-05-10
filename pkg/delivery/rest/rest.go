@@ -8,9 +8,9 @@ import (
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
 	gommonLog "github.com/labstack/gommon/log"
-	"github.com/purwalenta/purwalenta/pkg/delivery/rest/response"
-	"github.com/purwalenta/purwalenta/pkg/delivery/rest/route"
-	"github.com/purwalenta/purwalenta/pkg/delivery/rest/validator"
+	"github.com/parinpan/purwalenta/pkg/delivery/rest/response"
+	"github.com/parinpan/purwalenta/pkg/delivery/rest/route"
+	"github.com/parinpan/purwalenta/pkg/delivery/rest/validator"
 	"github.com/tylerb/graceful"
 )
 

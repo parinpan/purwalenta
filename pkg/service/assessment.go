@@ -2,9 +2,9 @@ package service
 
 import (
 	"github.com/labstack/echo"
-	_interface "github.com/purwalenta/purwalenta/pkg/interface"
-	"github.com/purwalenta/purwalenta/pkg/service/request"
-	"github.com/purwalenta/purwalenta/pkg/service/response"
+	_interface "github.com/parinpan/purwalenta/pkg/interface"
+	"github.com/parinpan/purwalenta/pkg/service/request"
+	"github.com/parinpan/purwalenta/pkg/service/response"
 )
 
 type AssessmentService struct {

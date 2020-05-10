@@ -1,7 +1,7 @@
 package driver
 
 import (
-	"github.com/purwalenta/purwalenta/pkg/entity"
+	"github.com/parinpan/purwalenta/pkg/entity"
 )
 
 var (

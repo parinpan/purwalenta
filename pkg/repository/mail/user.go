@@ -2,8 +2,8 @@ package mail
 
 import (
 	"github.com/labstack/echo"
-	"github.com/purwalenta/purwalenta/pkg/entity"
-	"github.com/purwalenta/purwalenta/pkg/repository/mail/driver"
+	"github.com/parinpan/purwalenta/pkg/entity"
+	"github.com/parinpan/purwalenta/pkg/repository/mail/driver"
 )
 
 type UserMailingRepository struct {

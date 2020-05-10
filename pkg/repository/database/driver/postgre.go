@@ -7,7 +7,7 @@ import (
 
 	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq"
-	"github.com/purwalenta/purwalenta/pkg/config"
+	"github.com/parinpan/purwalenta/pkg/config"
 )
 
 var (

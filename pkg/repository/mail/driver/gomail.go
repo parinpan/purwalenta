@@ -3,8 +3,8 @@ package driver
 import (
 	"crypto/tls"
 
-	"github.com/purwalenta/purwalenta/pkg/config"
-	"github.com/purwalenta/purwalenta/pkg/entity"
+	"github.com/parinpan/purwalenta/pkg/config"
+	"github.com/parinpan/purwalenta/pkg/entity"
 	"gopkg.in/gomail.v2"
 )
 

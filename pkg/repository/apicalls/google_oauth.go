@@ -5,8 +5,8 @@ import (
 
 	_ "github.com/go-resty/resty"
 	"github.com/labstack/echo"
-	"github.com/purwalenta/purwalenta/pkg/entity"
-	"github.com/purwalenta/purwalenta/pkg/repository/apicalls/response"
+	"github.com/parinpan/purwalenta/pkg/entity"
+	"github.com/parinpan/purwalenta/pkg/repository/apicalls/response"
 )
 
 const (

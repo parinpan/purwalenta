@@ -3,8 +3,8 @@ package builder
 import (
 	"strconv"
 
-	"github.com/purwalenta/purwalenta/pkg/config"
-	"github.com/purwalenta/purwalenta/pkg/entity"
+	"github.com/parinpan/purwalenta/pkg/config"
+	"github.com/parinpan/purwalenta/pkg/entity"
 )
 
 func UserSignUpVerificationEmailTemplate(verification entity.SignUpVerification) entity.TemplateEmail {

@@ -1,9 +1,9 @@
 package api
 
 import (
-	_interface "github.com/purwalenta/purwalenta/pkg/interface"
-	"github.com/purwalenta/purwalenta/pkg/repository/static"
-	servicePkg "github.com/purwalenta/purwalenta/pkg/service"
+	_interface "github.com/parinpan/purwalenta/pkg/interface"
+	"github.com/parinpan/purwalenta/pkg/repository/static"
+	servicePkg "github.com/parinpan/purwalenta/pkg/service"
 )
 
 var (

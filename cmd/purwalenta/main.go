@@ -3,8 +3,8 @@ package main
 import (
 	"time"
 
-	"github.com/purwalenta/purwalenta/pkg/delivery/rest"
-	"github.com/purwalenta/purwalenta/pkg/delivery/rest/response"
+	"github.com/parinpan/purwalenta/pkg/delivery/rest"
+	"github.com/parinpan/purwalenta/pkg/delivery/rest/response"
 )
 
 func main() {

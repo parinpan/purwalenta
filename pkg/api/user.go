@@ -1,14 +1,14 @@
 package api
 
 import (
-	_interface "github.com/purwalenta/purwalenta/pkg/interface"
-	"github.com/purwalenta/purwalenta/pkg/repository/cache"
-	cacheDriver "github.com/purwalenta/purwalenta/pkg/repository/cache/driver"
-	"github.com/purwalenta/purwalenta/pkg/repository/database"
-	"github.com/purwalenta/purwalenta/pkg/repository/database/driver"
-	"github.com/purwalenta/purwalenta/pkg/repository/mail"
-	mailingDriver "github.com/purwalenta/purwalenta/pkg/repository/mail/driver"
-	servicePkg "github.com/purwalenta/purwalenta/pkg/service"
+	_interface "github.com/parinpan/purwalenta/pkg/interface"
+	"github.com/parinpan/purwalenta/pkg/repository/cache"
+	cacheDriver "github.com/parinpan/purwalenta/pkg/repository/cache/driver"
+	"github.com/parinpan/purwalenta/pkg/repository/database"
+	"github.com/parinpan/purwalenta/pkg/repository/database/driver"
+	"github.com/parinpan/purwalenta/pkg/repository/mail"
+	mailingDriver "github.com/parinpan/purwalenta/pkg/repository/mail/driver"
+	servicePkg "github.com/parinpan/purwalenta/pkg/service"
 )
 
 var (

@@ -2,9 +2,9 @@ package handler
 
 import (
 	"github.com/labstack/echo"
-	apiPkg "github.com/purwalenta/purwalenta/pkg/api"
-	"github.com/purwalenta/purwalenta/pkg/delivery/rest/response"
-	"github.com/purwalenta/purwalenta/pkg/service/request"
+	apiPkg "github.com/parinpan/purwalenta/pkg/api"
+	"github.com/parinpan/purwalenta/pkg/delivery/rest/response"
+	"github.com/parinpan/purwalenta/pkg/service/request"
 )
 
 type userHandler struct {

@@ -6,12 +6,12 @@ import (
 	"time"
 
 	"github.com/labstack/echo"
-	"github.com/purwalenta/purwalenta/pkg/config"
-	"github.com/purwalenta/purwalenta/pkg/entity"
-	_interface "github.com/purwalenta/purwalenta/pkg/interface"
-	"github.com/purwalenta/purwalenta/pkg/service/request"
-	"github.com/purwalenta/purwalenta/pkg/service/response"
-	"github.com/purwalenta/purwalenta/pkg/util"
+	"github.com/parinpan/purwalenta/pkg/config"
+	"github.com/parinpan/purwalenta/pkg/entity"
+	_interface "github.com/parinpan/purwalenta/pkg/interface"
+	"github.com/parinpan/purwalenta/pkg/service/request"
+	"github.com/parinpan/purwalenta/pkg/service/response"
+	"github.com/parinpan/purwalenta/pkg/util"
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/google"
 )
