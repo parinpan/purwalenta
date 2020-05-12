@@ -18,7 +18,13 @@ const (
 	gracefulShutdownTimeout = 5 * time.Second
 )
 
-func Start(config response.Configuration) {
+type Configuration struct {
+	Address     string
+	IdleTimeout time.Duration
+	ReadTimeout time.Duration
+}
+
+func Start(config Configuration) {
 	e := echo.New()
 	defer e.Close()
 

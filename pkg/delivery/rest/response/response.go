@@ -8,12 +8,6 @@ import (
 	"github.com/parinpan/purwalenta/pkg/errord"
 )
 
-type Configuration struct {
-	Address     string
-	IdleTimeout time.Duration
-	ReadTimeout time.Duration
-}
-
 type response struct {
 	Error interface{} `json:"error"`
 	Data  interface{} `json:"data"`
